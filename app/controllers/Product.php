@@ -9,14 +9,40 @@ class Product extends Controller{
     }
 
     public function index(){
-        echo " Trang Danh Sách";
-        $dataIndex = $this->products->getListAll('tbl_product');
+        if(isset($_GET['page'])){
+            $page = $_GET['page'];
+        }else{
+            $page = '';
+        }
+        if($page==1 || $page== ''){
+            $begin = 0;
+        }else{
+            $begin = ($page * 6) - 6;
+        }
+        if(isset($_GET['cate'])){
+            $idComp = $_GET['cate'];
+            $dataIndex = $this->products->getById($idComp, 'tbl_product', 'company_Id');
+            $dataNumComp = $this->products->countList('tbl_product','company_Id',$idComp);
+            $this->data['numComp'] = $dataNumComp;
+        }else{
+            $dataIndex = $this->products->getListLimit('tbl_product', 6, $begin);
+        }
+        
         $this->data['content'] = 'products/index';
         $this->data['page_title'] = 'Trang Chủ Sản Phẩm';
         $this->data['sub_content'] = $dataIndex;
         
+        $dataPage = $this->products->countAll('tbl_product');
+        $dataPage = ceil($dataPage / 6);
+        $this->data['numPage'] = $dataPage;
+        $numHond = $this->products->countList('tbl_product','company_Id',1);
+        $this->data['numHond'] = $numHond;
+        $numYam = $this->products->countList('tbl_product', 'company_Id', 2);
+        $this->data['numYam'] = $numYam;
+        $numSuzu = $this->products->countList('tbl_product', 'company_Id', 3);
+        $this->data['numSuzu'] = $numSuzu;
         //Render views
-        $this->render('layouts/index_layout', $this->data);
+        $this->render('layouts/product_layout', $this->data);
             
     }
 
@@ -39,7 +65,7 @@ class Product extends Controller{
         $this->data['sub_content'] = $dataDetail;
         
         //Render view
-        $this->render('layouts/client_layout', $this->data);
+        $this->render('layouts/product_layout', $this->data);
     }
 
     

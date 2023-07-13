@@ -16,6 +16,34 @@ class ParamsMiddleware extends Middlewares{
                     $response->redirect(Route::getFullUrl());
                 }
             }
+            if ($_GET['page']) {
+                $page = $_GET['page'];
+                if (is_numeric($page)) {
+                    if ($_SERVER['QUERY_STRING'] = 'page=' . $page) {
+                        return $page;
+                    } else {
+                        $response = new Response();
+                        $response->redirect(Route::getFullUrl());
+                    }
+                } else {
+                    $response = new Response();
+                    $response->redirect(Route::getFullUrl());
+                }
+            }
+            if ($_GET['cate']) {
+                $cate = $_GET['cate'];
+                if (is_numeric($cate)) {
+                    if ($_SERVER['QUERY_STRING'] = 'cate=' . $cate) {
+                        return $cate;
+                    } else {
+                        $response = new Response();
+                        $response->redirect(Route::getFullUrl());
+                    }
+                } else {
+                    $response = new Response();
+                    $response->redirect(Route::getFullUrl());
+                }
+            }
         }
 
     }

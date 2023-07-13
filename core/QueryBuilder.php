@@ -7,6 +7,7 @@
         public $where = '';
         public $operator = '';
         public $selectField = '*';
+        public $count = '';
         public $limit = '';
         public $orderBy = '';
         public $innerJoin = '';
@@ -81,6 +82,10 @@
             return $this;
         }
 
+        public function countBuilder($field = '*'){
+            $this->count.= ' COUNT('.$field.') ';
+            return $this;
+        }
         public function insertBuilder($data){
             $tableName = $this->tableName;
             $insertStatus = $this->insertData($tableName, $data);
@@ -119,10 +124,21 @@
             
             return false;
         }
+        public function countListBuilder(){
+            $sqlQuery = "SELECT $this->selectField FROM  $this->tableName $this->innerJoin $this->where $this->orderBy $this->limit";
+            $sqlQuery = trim($sqlQuery);
+            $query = $this->query($sqlQuery);
+            $this->resetQuery();
+            if (!empty($query)) {
+                return $query->rowCount();
+            }
 
+            return false;
+        }
         public function getTwoTableBuilder()
         {
             $sqlQuery = "SELECT $this->selectField FROM  $this->tableName_1 , $this->tableName_2 $this->innerJoin $this->where $this->orderBy $this->limit";
+            $sqlQuery = trim($sqlQuery);
             $query = $this->query($sqlQuery);
             $this->resetQuery();
             if (!empty($query)) {
@@ -152,6 +168,7 @@
             $this->where = '';
             $this->operator = '';
             $this->selectField = '*';
+            $this->count = '';
             $this->limit = '';
             $this->order = '';
             $this->innerJoin = '';

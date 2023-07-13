@@ -10,8 +10,9 @@
             $dataIndex = $this->category->getListAll('tbl_product');
             $this->data['content'] = 'home/index';
             $this->data['sub_content'] = $dataIndex;
-            
-            $this->render('layouts/client_layout',$this->data);
+            $dataNews = $this->category->getListLimit('tbl_news');
+            $this->data['news'] = $dataNews;
+            $this->render('layouts/home_layout',$this->data);
         }
 
         public function get_request(){

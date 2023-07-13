@@ -79,7 +79,7 @@
                                     <nav class="desktop-menu">
                                         <ul>
                                             <li class="active"><a href="<?php echo _WEB_ROOT ?>/home">Home</i></a></li>
-                                            <li><a href="danh-sach-san-pham">shop</i></a></li>
+                                            <li><a href="san-pham">shop</i></a></li>
                                             <li><a href="#">Blog</i></a></li><!--Sửa-->
                                             <li><a href="#">Contact us</a></li><!--Sửa-->
                                         </ul>

@@ -18,7 +18,7 @@ class HomeModel extends Model
         return $data;
     }
     public function getListLimit($table){
-        $data =  $this->db->tableBuilder($table)->selectBuilder()->getAllBuilder();
+        $data =  $this->db->tableBuilder($table)->selectBuilder()->limitBuilder(3)->getAllBuilder();
         return $data;
     }
 

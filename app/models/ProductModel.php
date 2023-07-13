@@ -5,11 +5,15 @@ class ProductModel extends Model{
         $data =  $this->db->tableBuilder($table)->selectBuilder()->getAllBuilder();
         return $data;
     }
-     public function getById($id,$table){
-        $data = $this->db->tableBuilder($table)->selectBuilder()->whereBuilder('product_Id','=',$id)->getOneBuilder();
+     public function getById($id,$table,$field){
+        $data = $this->db->tableBuilder($table)->selectBuilder()->whereBuilder($field,'=',$id)->getAllBuilder();
         return $data;
     }
-
+    public function getListLimit($table,$begin,$base = 0)
+    {
+        $data =  $this->db->tableBuilder($table)->selectBuilder()->limitBuilder($begin, $base)->getAllBuilder();
+        return $data;
+    }
     public function getAllById($id, $table,$field){
         $data = $this->db->tableBuilder($table)->selectBuilder()->whereBuilder($field, '=', $id)->getAllBuilder();
         return $data;
@@ -19,6 +23,15 @@ class ProductModel extends Model{
         $data = $this->db->lastInsertBuilder();
         return $data;
     }
+    public function countAll($table) {
+        $data = $this->db->tableBuilder($table)->countListBuilder();
+        return $data;
+    }
+    public function countList($table,$field,$num){
+        $data = $this->db->tableBuilder($table)->whereBuilder($field, '=', $num)->countListBuilder();
+        return $data;
+    }
+
 
     public function insert($data,$table)
     {

@@ -102,7 +102,7 @@
                             <div class="product-item mb-50">
                                 <div class="product-thumb">
                                     <a href="product-details.html">
-                                        <img src="<?php echo _WEB_ROOT.$value['product_Img'] ?>" alt="">
+                                        <img src="<?php echo _WEB_ROOT . $value['product_Img'] ?>" alt="">
                                     </a>
                                 </div>
                                 <div class="product-content">
@@ -113,11 +113,7 @@
                                         <span class="price-regular"><?php echo $value['product_downPrice'] ?></span>
                                         <span class="price-old"><del><?php echo $value['product_Price'] ?></del></span>
                                     </div>
-                                    <div class="product-action-link">
-                                        <a href="#" data-toggle="tooltip" title="Wishlist"><i class="ion-android-favorite-outline"></i></a>
-                                        <a href="#" data-toggle="tooltip" title="Add To Cart"><i class="ion-bag"></i></a>
-                                        <a href="#" data-toggle="modal" data-target="#quick_view"> <span data-toggle="tooltip" title="Quick View"><i class="ion-ios-eye-outline"></i></span> </a>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         <?php
@@ -132,7 +128,7 @@
     <!-- our product area end -->
 
     <!-- banner statistic area start -->
-    
+
     <!-- banner statistic area end -->
 
     <!-- top seller area start -->
@@ -145,8 +141,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title text-center">
-                        <h2 class="title">our blog</h2>
-                        <p class="sub-title">Lorem ipsum dolor sit amet consectetur adipisicing</p>
+                        <h2 class="title">Tin Tức</h2>
+
                     </div>
                 </div>
             </div>
@@ -154,91 +150,31 @@
                 <div class="col-12">
                     <div class="blog-carousel-active slick-row-15">
                         <!-- blog single item start -->
-                        <div class="blog-post-item">
-                            <div class="blog-thumb">
-                                <a href="blog-details.html">
-                                    <img src="public/assets/clients/images/blog/blog-1.jpg" alt="blog thumb">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <h5 class="blog-title">
+                        <?php
+                        foreach ($news as $key => $value) {
+                        ?>
+                            <div class="blog-post-item">
+                                <div class="blog-thumb">
                                     <a href="blog-details.html">
-                                        Celebrity Daughter Opens About to Having Her Eye color
+                                        <img src="<?php echo _WEB_ROOT ?><?php echo $value['news_mainImg'] ?>" alt="blog thumb">
                                     </a>
-                                </h5>
-                                <ul class="blog-meta">
-                                    <li><span>By: </span>Admin,</li>
-                                    <li><span>On: </span>14.07.2029</li>
-                                </ul>
-                                <a href="blog-details.html" class="read-more">Read More...</a>
+                                </div>
+                                <div class="blog-content">
+                                    <h5 class="blog-title">
+                                        <a href="blog-details.html">
+                                            <?php echo $value['news_Title'] ?>
+                                        </a>
+                                    </h5>
+                                    <ul class="blog-meta">
+                                        <li><span>By: </span><?php echo $value['news_upName'] ?>,</li>
+                                        <li><span>On: </span><?php echo $value['news_Date'] ?></li>
+                                    </ul>
+                                    <a href="blog-details.html" class="read-more">Read More...</a>
+                                </div>
                             </div>
-                        </div>
-                        <!-- blog single item start -->
-
-                        <!-- blog single item start -->
-                        <div class="blog-post-item">
-                            <div class="blog-thumb">
-                                <a href="blog-details.html">
-                                    <img src="public/assets/clients/images/blog/blog-2.jpg" alt="blog thumb">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <h5 class="blog-title">
-                                    <a href="blog-details.html">
-                                        Sotto Winner Offering Money To Any Man That Will Date Her
-                                    </a>
-                                </h5>
-                                <ul class="blog-meta">
-                                    <li><span>By: </span>Admin,</li>
-                                    <li><span>On: </span>14.07.2029</li>
-                                </ul>
-                                <a href="blog-details.html" class="read-more">Read More...</a>
-                            </div>
-                        </div>
-                        <!-- blog single item start -->
-
-                        <!-- blog single item start -->
-                        <div class="blog-post-item">
-                            <div class="blog-thumb">
-                                <a href="blog-details.html">
-                                    <img src="public/assets/clients/images/blog/blog-3.jpg" alt="blog thumb">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <h5 class="blog-title">
-                                    <a href="blog-details.html">
-                                        Children Left Home Alone For 4 Days In TV Series Experiment
-                                    </a>
-                                </h5>
-                                <ul class="blog-meta">
-                                    <li><span>By: </span>Admin,</li>
-                                    <li><span>On: </span>14.07.2029</li>
-                                </ul>
-                                <a href="blog-details.html" class="read-more">Read More...</a>
-                            </div>
-                        </div>
-                        <!-- blog single item start -->
-
-                        <!-- blog single item start -->
-                        <div class="blog-post-item">
-                            <div class="blog-thumb">
-                                <a href="blog-details.html">
-                                    <img src="public/assets/clients/images/blog/blog-2.jpg" alt="blog thumb">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <h5 class="blog-title">
-                                    <a href="blog-details.html">
-                                        People Are Willing Lie When To Comes Money Research from
-                                    </a>
-                                </h5>
-                                <ul class="blog-meta">
-                                    <li><span>By: </span>Admin,</li>
-                                    <li><span>On: </span>14.07.2029</li>
-                                </ul>
-                                <a href="blog-details.html" class="read-more">Read More...</a>
-                            </div>
-                        </div>
+                        <?php
+                        }
+                        ?>
                         <!-- blog single item start -->
                     </div>
                 </div>
@@ -278,68 +214,3 @@
 </main>
 <!-- main wrapper end -->
 
-<!-- Quick view modal start -->
-<div class="modal" id="quick_view">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <!-- product details inner end -->
-                <div class="product-details-inner">
-                    <div class="row">
-                        <div class="col-lg-5">
-                            <div class="product-large-slider mb-20">
-                                <div class="pro-large-img img-zoom">
-                                    <img src="public/assets/clients/images/product/product-details-img1.jpg" alt="product thumb" />
-                                </div>
-                                <div class="pro-large-img img-zoom">
-                                    <img src="public/assets/clients/images/product/product-details-img2.jpg" alt="product thumb" />
-                                </div>
-                                <div class="pro-large-img img-zoom">
-                                    <img src="public/assets/clients/images/product/product-details-img3.jpg" alt="product thumb" />
-                                </div>
-                                <div class="pro-large-img img-zoom">
-                                    <img src="public/assets/clients/images/product/product-details-img4.jpg" alt="product thumb" />
-                                </div>
-                            </div>
-                            <div class="pro-nav slick-row-5">
-                                <div class="pro-nav-thumb"><img src="public/assets/clients/images/product/product-details-img1.jpg" alt="" /></div>
-                                <div class="pro-nav-thumb"><img src="public/assets/clients/images/product/product-details-img2.jpg" alt="" /></div>
-                                <div class="pro-nav-thumb"><img src="public/assets/clients/images/product/product-details-img3.jpg" alt="" /></div>
-                                <div class="pro-nav-thumb"><img src="public/assets/clients/images/product/product-details-img4.jpg" alt="" /></div>
-                            </div>
-                        </div>
-                        <div class="col-lg-7">
-                            <div class="product-details-des">
-                                <h3 class="pro-det-title">Primitive Mens Premium Shoes</h3>
-                                <div class="pro-review">
-                                    <span><a href="#">1 Review(s)</a></span>
-                                </div>
-                                <div class="price-box">
-                                    <span class="regular-price">$70.00</span>
-                                    <span class="old-price"><del>$80.00</del></span>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-                                <div class="quantity-cart-box d-flex align-items-center mb-20">
-                                    <div class="quantity">
-                                        <div class="pro-qty"><input type="text" value="1"></div>
-                                    </div>
-                                    <a href="cart.html" class="btn btn-default">Add To Cart</a>
-                                </div>
-                                <div class="availability mb-20">
-                                    <h5 class="cat-title">Availability:</h5>
-                                    <span>In Stock</span>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- product details inner end -->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Quick view modal end -->
