@@ -11,8 +11,8 @@
                         <nav aria-label="breadcrumb">
                             <h1 class="breadcrumb-title">shop</h1>
                             <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item"><a href="shop.html">Shop</a></li>
+                                <li class="breadcrumb-item"><a href="<?php echo _WEB_ROOT ?>/home">Home</a></li>
+                                <li class="breadcrumb-item"><a href="<?php echo _WEB_ROOT ?>/san-pham">Shop</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Chi Tiết Sản Phẩm</li>
                             </ul>
                         </nav>
@@ -55,16 +55,15 @@
                             </div>
                             <div class="col-lg-7">
                                 <div class="product-details-des">
-                                    <h3 class="pro-det-title">Primitive Mens Premium Shoes</h3>
+                                    <h3 class="pro-det-title"><?php echo $dataShow[0]['product_Name'] ?></h3>
                                     <div class="pro-review">
                                         <span><a href="#">1 Review(s)</a></span>
                                     </div>
                                     <div class="price-box">
-                                        <span class="regular-price">$70.00</span>
-                                        <span class="old-price"><del>$80.00</del></span>
+                                        <span class="regular-price"><?php echo $dataShow[0]['product_downPrice'] ?> VNĐ</span>
+                                        <span class="old-price"><del><?php echo $dataShow[0]['product_Price'] ?> VNĐ</del></span>
                                     </div>
-                                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.<br>
-                                        Phasellus id nisi quis justo tempus mollis sed et dui. In hac habitasse platea dictumst. Suspendisse ultrices mauris diam. Nullam sed aliquet elit. Mauris consequat nisi ut mauris efficitur lacinia.</p>
+                                    <p><?php echo $dataShow[0]['product_Desc'] ?></p>
                                     <div class="quantity-cart-box d-flex align-items-center mb-20">
                                         <div class="quantity">
                                             <div class="pro-qty"><input type="text" value="1"></div>
@@ -95,39 +94,14 @@
                                 <div class="product-review-info">
                                     <ul class="nav review-tab">
                                         <li>
-                                            <a class="active" data-toggle="tab" href="#tab_one">description</a>
+                                            <a class="active" data-toggle="tab" href="#tab_one">information</a>
                                         </li>
                                         <li>
-                                            <a data-toggle="tab" href="#tab_two">information</a>
-                                        </li>
-                                        <li>
-                                            <a data-toggle="tab" href="#tab_three">reviews</a>
+                                            <a data-toggle="tab" href="#tab_two">reviews</a>
                                         </li>
                                     </ul>
                                     <div class="tab-content reviews-tab">
                                         <div class="tab-pane fade show active" id="tab_one">
-                                            <div class="tab-one">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Ipsum metus feugiat sem, quis fermentum turpis eros eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque.</p>
-                                                <div class="review-description">
-                                                    <div class="tab-thumb">
-                                                        <img src="assets/img/about/services.jpg" alt="">
-                                                    </div>
-                                                    <div class="tab-des">
-                                                        <h3>Product Information :</h3>
-                                                        <ul>
-                                                            <li>Donec non est at libero vulputate rutrum</li>
-                                                            <li>Morbi ornare lectus quis justo gravida</li>
-                                                            <li>Pellentesque aliquet, sem eget laoreet</li>
-                                                            <li>Donec a neque libero</li>
-                                                            <li>Pellentesque aliquet, sem eget laoreet</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <p>Cras neque metus, consequat et blandit et, luctus a nunc. Etiam gravida vehicula tellus, in imperdiet ligula euismod eget. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam erat mi, rutrum at sollicitudin rhoncus, ultricies posuere erat. Duis convallis, arcu nec aliquam consequat, purus felis vehicula felis, a dapibus enim lorem nec augue. Nunc facilisis sagittis ullamcorper.</p>
-                                                <p>Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Vivamus adipiscing nisl ut dolor dignissim semper. Nulla luctus malesuada tincidunt.</p>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="tab_two">
                                             <table class="table table-bordered">
                                                 <tbody>
                                                     <tr>
@@ -141,7 +115,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div class="tab-pane fade" id="tab_three">
+                                        <div class="tab-pane fade" id="tab_two">
                                             <form action="#" class="review-form">
                                                 <h5>1 review for <span>Chaz Kangeroo Hoodies</span></h5>
                                                 <div class="total-reviews">

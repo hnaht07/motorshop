@@ -132,7 +132,7 @@
                                 <?php
                                 for ($i = 1; $i <= $numPage; $i++) {
                                 ?>
-                                    <li <?php echo ($_GET['page'] && $_GET['page'] == $i) ?  'class="active"' : false ?>><a href="san-pham?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                                    <li <?php echo ($_GET['page'] && $_GET['page'] == $i ) ?  'class="active"' : false ?>><a href="san-pham?page=<?php echo $i ?>"><?php echo $i ?></a></li>
                                 <?php
                                 }
                                 ?>
