@@ -88,7 +88,7 @@
                                 <div class="product-item mb-53">
 
                                     <div class="product-thumb">
-                                        <a href="product-details.html">
+                                        <a href="chi-tiet-san-pham?id=<?php echo $value['product_Id'] ?>">
                                             <img src="<?php echo _WEB_ROOT ?><?php echo $value['product_Img'] ?>" alt="">
                                         </a>
                                     </div>

@@ -58,14 +58,17 @@ class Product extends Controller{
     }
 
     public function detail_product($id=0){
-        $id = 3;
-        $dataDetail = $this->products->getById($id, 'tbl_product');
+        $id = $_GET['id'];
+        $dataDetail = $this->products->getById($id, 'tbl_product','product_Id');
+        $dataImg = $this->products->getById($id, 'tbl_product_img','product_Id');
+       
         $this->data['content'] = 'products/detail';
         $this->data['page_title'] = "Chi tiết sản phẩm";
+        $this->data['img'] = $dataImg;
         $this->data['sub_content'] = $dataDetail;
         
         //Render view
-        $this->render('layouts/product_layout', $this->data);
+        $this->render('layouts/detail_layout', $this->data);
     }
 
     
