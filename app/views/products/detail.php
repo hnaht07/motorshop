@@ -12,7 +12,7 @@
                             <h1 class="breadcrumb-title">shop</h1>
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="<?php echo _WEB_ROOT ?>/home">Home</a></li>
-                                <li class="breadcrumb-item"><a href="<?php echo _WEB_ROOT ?>/san-pham">Shop</a></li>
+                                <li class="breadcrumb-item"><a href="<?php echo _WEB_ROOT ?>/san-pham?page=1">Shop</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Chi Tiết Sản Phẩm</li>
                             </ul>
                         </nav>
@@ -65,22 +65,25 @@
                                     </div>
                                     <p><?php echo $dataShow[0]['product_Desc'] ?></p>
                                     <div class="quantity-cart-box d-flex align-items-center mb-20">
-                                        <div class="quantity">
-                                            <div class="pro-qty"><input type="text" value="1"></div>
-                                        </div>
-                                        <a href="cart.html" class="btn btn-default">Add To Cart</a>
+                                       
+                                        <a href="cart.html" class="btn btn-default">Mua Xe</a>
                                     </div>
                                     <div class="availability mb-20">
-                                        <h5 class="cat-title">Availability:</h5>
-                                        <span>In Stock</span>
+                                        <h5 class="cat-title">Trạng Thái Xe:</h5>
+                                        <?php
+                                        if ($dataShow[0]['product_Status'] == 1) {
+                                        ?>
+                                            <span style="color:red">Hết Hàng</span>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <span>Còn Hàng</span>
+                                        <?php
+                                        }
+                                        ?>
+
                                     </div>
-                                    <div class="share-icon">
-                                        <h5 class="cat-title">Share:</h5>
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
-                                        <a href="#"><i class="fa fa-pinterest"></i></a>
-                                        <a href="#"><i class="fa fa-google-plus"></i></a>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -189,8 +192,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="section-title text-center">
-                                        <h2 class="title">Related Product</h2>
-                                        <p class="sub-title">Lorem ipsum dolor sit amet consectetur adipisicing</p>
+                                        <h2 class="title">Sản Phẩm Cùng Hãng</h2>
                                     </div>
                                 </div>
                             </div>
@@ -198,123 +200,33 @@
                                 <div class="col-12">
                                     <div class="product-carousel-4 mbn-50 slick-row-15 slick-arrow-style">
                                         <!-- product single item start -->
-                                        <div class="product-item mb-50">
-                                            <div class="product-thumb">
-                                                <a href="product-details.html">
-                                                    <img src="assets/img/product/product-1.jpg" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="product-content">
-                                                <h5 class="product-name">
-                                                    <a href="product-details.html">Leather Mens Slipper</a>
-                                                </h5>
-                                                <div class="price-box">
-                                                    <span class="price-regular">$80.00</span>
-                                                    <span class="price-old"><del>$70.00</del></span>
-                                                </div>
-                                                <div class="product-action-link">
-                                                    <a href="#" data-toggle="tooltip" title="Wishlist"><i class="ion-android-favorite-outline"></i></a>
-                                                    <a href="#" data-toggle="tooltip" title="Add To Cart"><i class="ion-bag"></i></a>
-                                                    <a href="#" data-toggle="modal" data-target="#quick_view"> <span data-toggle="tooltip" title="Quick View"><i class="ion-ios-eye-outline"></i></span> </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- product single item start -->
+                                        <?php
 
-                                        <!-- product single item start -->
-                                        <div class="product-item mb-50">
-                                            <div class="product-thumb">
-                                                <a href="product-details.html">
-                                                    <img src="assets/img/product/product-2.jpg" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="product-content">
-                                                <h5 class="product-name">
-                                                    <a href="product-details.html">Quickiin Mens shoes</a>
-                                                </h5>
-                                                <div class="price-box">
-                                                    <span class="price-regular">$80.00</span>
-                                                    <span class="price-old"><del>$70.00</del></span>
-                                                </div>
-                                                <div class="product-action-link">
-                                                    <a href="#" data-toggle="tooltip" title="Wishlist"><i class="ion-android-favorite-outline"></i></a>
-                                                    <a href="#" data-toggle="tooltip" title="Add To Cart"><i class="ion-bag"></i></a>
-                                                    <a href="#" data-toggle="modal" data-target="#quick_view"> <span data-toggle="tooltip" title="Quick View"><i class="ion-ios-eye-outline"></i></span> </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- product single item start -->
+                                        foreach ($rel as $key => $value) {
+                                            if ($value['product_Id'] != $dataShow[0]['product_Id']) {
 
-                                        <!-- product single item start -->
-                                        <div class="product-item mb-50">
-                                            <div class="product-thumb">
-                                                <a href="product-details.html">
-                                                    <img src="assets/img/product/product-3.jpg" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="product-content">
-                                                <h5 class="product-name">
-                                                    <a href="product-details.html">Rexpo Womens shoes</a>
-                                                </h5>
-                                                <div class="price-box">
-                                                    <span class="price-regular">$80.00</span>
-                                                    <span class="price-old"><del>$70.00</del></span>
+                                        ?>
+                                                <div class="product-item mb-50">
+                                                    <div class="product-thumb">
+                                                        <a href="chi-tiet-san-pham?id=<?php echo $value['product_Id'] ?>">
+                                                            <img src="<?php echo _WEB_ROOT . $value['product_Img'] ?>" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <div class="product-content">
+                                                        <h5 class="product-name">
+                                                            <a href="chi-tiet-san-pham?id=<?php echo $value['product_Id'] ?>"><?php echo $value['product_Name'] ?></a>
+                                                        </h5>
+                                                        <div class="price-box">
+                                                            <span class="price-regular"><?php echo $value['product_downPrice'] ?></span>
+                                                            <span class="price-old"><del><?php echo $value['product_Price'] ?></del></span>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="product-action-link">
-                                                    <a href="#" data-toggle="tooltip" title="Wishlist"><i class="ion-android-favorite-outline"></i></a>
-                                                    <a href="#" data-toggle="tooltip" title="Add To Cart"><i class="ion-bag"></i></a>
-                                                    <a href="#" data-toggle="modal" data-target="#quick_view"> <span data-toggle="tooltip" title="Quick View"><i class="ion-ios-eye-outline"></i></span> </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- product single item start -->
+                                        <?php
+                                            }
+                                        }
+                                        ?>
 
-                                        <!-- product single item start -->
-                                        <div class="product-item mb-50">
-                                            <div class="product-thumb">
-                                                <a href="product-details.html">
-                                                    <img src="assets/img/product/product-4.jpg" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="product-content">
-                                                <h5 class="product-name">
-                                                    <a href="product-details.html">Primitive Mens shoes</a>
-                                                </h5>
-                                                <div class="price-box">
-                                                    <span class="price-regular">$80.00</span>
-                                                    <span class="price-old"><del>$70.00</del></span>
-                                                </div>
-                                                <div class="product-action-link">
-                                                    <a href="#" data-toggle="tooltip" title="Wishlist"><i class="ion-android-favorite-outline"></i></a>
-                                                    <a href="#" data-toggle="tooltip" title="Add To Cart"><i class="ion-bag"></i></a>
-                                                    <a href="#" data-toggle="modal" data-target="#quick_view"> <span data-toggle="tooltip" title="Quick View"><i class="ion-ios-eye-outline"></i></span> </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- product single item start -->
-
-                                        <!-- product single item start -->
-                                        <div class="product-item mb-50">
-                                            <div class="product-thumb">
-                                                <a href="product-details.html">
-                                                    <img src="assets/img/product/product-5.jpg" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="product-content">
-                                                <h5 class="product-name">
-                                                    <a href="product-details.html">Leather Mens Slipper</a>
-                                                </h5>
-                                                <div class="price-box">
-                                                    <span class="price-regular">$80.00</span>
-                                                    <span class="price-old"><del>$70.00</del></span>
-                                                </div>
-                                                <div class="product-action-link">
-                                                    <a href="#" data-toggle="tooltip" title="Wishlist"><i class="ion-android-favorite-outline"></i></a>
-                                                    <a href="#" data-toggle="tooltip" title="Add To Cart"><i class="ion-bag"></i></a>
-                                                    <a href="#" data-toggle="modal" data-target="#quick_view"> <span data-toggle="tooltip" title="Quick View"><i class="ion-ios-eye-outline"></i></span> </a>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <!-- product single item start -->
                                     </div>
                                 </div>

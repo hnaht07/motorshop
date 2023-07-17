@@ -94,7 +94,7 @@
                                     </div>
                                     <div class="product-content">
                                         <h5 class="product-name">
-                                            <a href="product-details.html"><?php echo $value['product_Name'] ?></a>
+                                            <a href="chi-tiet-san-pham?id=<?php echo $value['product_Id'] ?>"><?php echo $value['product_Name'] ?></a>
                                         </h5>
                                         <div class="price-box">
                                             <span class="price-regular"><?php echo $value['product_downPrice'] ?> VNĐ</span>
@@ -132,7 +132,7 @@
                                 <?php
                                 for ($i = 1; $i <= $numPage; $i++) {
                                 ?>
-                                    <li <?php echo ($_GET['page'] && $_GET['page'] == $i ) ?  'class="active"' : false ?>><a href="san-pham?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                                    <li <?php echo ($_GET['page'] && $_GET['page'] == $i) ?  'class="active"' : false ?>><a href="san-pham?page=<?php echo $i ?>"><?php echo $i ?></a></li>
                                 <?php
                                 }
                                 ?>
