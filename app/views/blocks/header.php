@@ -72,7 +72,7 @@
                         </div>
                         <!-- start logo area -->
                         <!-- main menu area start -->
-                        <div class="col-lg-8 position-static">
+                        <div class="col-lg-6 position-static">
                             <div class="main-menu-area">
                                 <div class="main-menu">
                                     <!-- main menu navbar start -->
@@ -89,28 +89,22 @@
                             </div>
                         </div>
                         <!-- main menu area end -->
-
-                        <!-- mini cart area start -->
-                        <div class="col-lg-2">
+                        <div class="col-lg-4">
                             <div class="header-configure-wrapper">
                                 <div class="header-configure-area">
-                                    <ul class="nav justify-content-end">
-                                        <li>
-                                            <a href="#" class="offcanvas-btn">
-                                                <i class="ion-ios-search-strong"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="minicart-btn">
-                                                <i class="ion-bag"></i>
-                                                <div class="notification">2</div>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    <div class="search-box-offcanvas">
+                                        <form method="post" action="<?php echo _WEB_ROOT ?>/product/search_product">
+                                            <input type="text" name="search" id="search" placeholder="Tìm Kiếm...">
+                                            <button class="search-btn" type="submit" name="submit"><i class="ion-ios-search-strong"></i></button>
+                                        </form>
+                                    </div>
+                                    <div class="list-group" id="show_list">
+                                        
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
-                        <!-- mini cart area end -->
                     </div>
                 </div>
             </div>
@@ -177,8 +171,8 @@
                     <nav>
                         <ul class="mobile-menu">
                             <li class="menu-item-has-children"><a href="<?php echo _WEB_ROOT ?>/home">Trang Chủ</a></li>
-                            <li class="menu-item-has-children "><a href="#">Shop</a></li>
-                            <li class="menu-item-has-children "><a href="#">Blog</a></li>
+                            <li class="menu-item-has-children "><a href="<?php echo _WEB_ROOT ?>/san-pham?page=1">Shop</a></li>
+                            <li class=" menu-item-has-children "><a href=" #">Blog</a></li>
                             <li><a href="#">Contact us</a></li>
                         </ul>
                     </nav>

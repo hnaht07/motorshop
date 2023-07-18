@@ -116,7 +116,6 @@
         public function getAllBuilder(){
             $sqlQuery = "SELECT $this->selectField FROM  $this->tableName $this->innerJoin $this->where $this->orderBy $this->limit";
             $query = $this->query($sqlQuery);
-            
             $this->resetQuery();
             if(!empty($query)){
                 return $query->fetchAll(PDO::FETCH_ASSOC);

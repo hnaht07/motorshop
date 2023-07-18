@@ -62,12 +62,13 @@ class Product extends Controller{
         $dataDetail = $this->products->getById($id, 'tbl_product','product_Id');
         $dataImg = $this->products->getById($id, 'tbl_product_img','product_Id');
         $dataRel = $this->products->getById($dataDetail[0]['company_Id'], 'tbl_product','company_Id');
-       
+        $dataInfo = $this->products->getById($dataDetail[0]['product_Id'], 'tbl_product_info','product_Id');
         $this->data['content'] = 'products/detail';
         $this->data['page_title'] = "Chi tiết sản phẩm";
         $this->data['img'] = $dataImg;
         $this->data['sub_content'] = $dataDetail;
         $this->data['rel'] = $dataRel;
+        $this->data['info'] = $dataInfo;
         
         //Render view
         $this->render('layouts/detail_layout', $this->data);
@@ -202,5 +203,31 @@ class Product extends Controller{
         }
         $response = new Response();
         $response->redirect('product/list_product');
+    }
+
+    public function search_product(){
+        $dataSearch= [];
+        if(isset($_POST['query'])){
+            $contentSearch = $_POST['query'];
+            $dataSearch = $this->products->searchbyName('tbl_product', $contentSearch , 'product_Name','product_Id , product_Name');
+        }
+        if($dataSearch != []){
+            foreach ($dataSearch as $key => $value) {
+                echo "<ul>";
+                echo "<a href=''>";
+                echo "<li>";
+                echo $value['product_Name'];
+                echo "</li>";
+                echo "</a>";
+                echo "</ul>";
+            }
+        }else{
+            echo "<ul>";
+            echo "<li>";
+            echo "Không có kết quả";
+            echo "</li>";
+            echo "</ul>";
+        }
+        
     }
 }

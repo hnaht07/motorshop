@@ -1,4 +1,5 @@
 <?php
+
 ?>
 <!-- main wrapper start -->
 <main>
@@ -65,7 +66,7 @@
                                     </div>
                                     <p><?php echo $dataShow[0]['product_Desc'] ?></p>
                                     <div class="quantity-cart-box d-flex align-items-center mb-20">
-                                       
+
                                         <a href="cart.html" class="btn btn-default">Mua Xe</a>
                                     </div>
                                     <div class="availability mb-20">
@@ -97,7 +98,7 @@
                                 <div class="product-review-info">
                                     <ul class="nav review-tab">
                                         <li>
-                                            <a class="active" data-toggle="tab" href="#tab_one">information</a>
+                                            <a class="active" data-toggle="tab" href="#tab_one">Thông số kĩ thuật</a>
                                         </li>
                                         <li>
                                             <a data-toggle="tab" href="#tab_two">reviews</a>
@@ -107,14 +108,79 @@
                                         <div class="tab-pane fade show active" id="tab_one">
                                             <table class="table table-bordered">
                                                 <tbody>
-                                                    <tr>
-                                                        <td>color</td>
-                                                        <td>black, blue, red</td>
+                                                    <tr style="background-color:#dfdbdb">
+                                                        <td>Khối lượng bản thân</td>
+                                                        <td><?php echo $info[0]['info_Weight'] ?>kg</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>size</td>
-                                                        <td>L, M, S</td>
+                                                        <td>Dài x Rộng x Cao</td>
+                                                        <td><?php echo $info[0]['info_Long'] ?> x <?php echo $info[0]['info_Wide'] ?> x <?php echo $info[0]['info_High'] ?>mm</td>
                                                     </tr>
+                                                    <tr style="background-color:#dfdbdb">
+                                                        <td>Độ cao yên</td>
+                                                        <td><?php echo $info[0]['info_Saddle'] ?>mm</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Khoảng sáng gầm xe</td>
+                                                        <td><?php echo $info[0]['info_Clean'] ?>mm</td>
+                                                    </tr>
+                                                    <tr style="background-color:#dfdbdb">
+                                                        <td>Dung tích bình xăng</td>
+                                                        <td><?php echo $info[0]['info_Tank'] ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Kích cỡ lốp trước/ sau</td>
+                                                        <td>Lốp trước: <?php echo $info[0]['info_frtWheel'] ?> <br> Lốp sau: <?php echo $info[0]['info_bckWheel'] ?></td>
+                                                    </tr>
+                                                    <tr style="background-color:#dfdbdb">
+                                                        <td>Phuộc trước</td>
+                                                        <td><?php echo $info[0]['info_frtFork'] ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Phuộc sau</td>
+                                                        <td><?php echo $info[0]['info_bckFork'] ?></td>
+                                                    </tr>
+                                                    <tr style="background-color:#dfdbdb">
+                                                        <td>Loại động cơ</td>
+                                                        <td><?php echo $info[0]['info_Engine'] ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Công suất tối đa</td>
+                                                        <td><?php echo $info[0]['info_maxWatt'] ?></td>
+                                                    </tr>
+                                                    <tr style="background-color:#dfdbdb">
+                                                        <td>Dung tích nhớt máy</td>
+                                                        <td><?php echo $info[0]['info_Oil'] ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Mức tiêu thụ nhiên liệu</td>
+                                                        <td><?php echo $info[0]['info_Fuel'] ?></td>
+                                                    </tr>
+                                                    <tr style="background-color:#dfdbdb">
+                                                        <td>Hộp số</td>
+                                                        <td><?php echo $info[0]['info_Gear'] ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Hệ thống khởi động</td>
+                                                        <td><?php echo $info[0]['info_Starting'] ?></td>
+                                                    </tr>
+                                                    <tr style="background-color:#dfdbdb">
+                                                        <td>Moment cực đại</td>
+                                                        <td><?php echo $info[0]['info_maxMoment'] ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Dung tích xy-lanh</td>
+                                                        <td><?php echo $info[0]['info_volCylind'] ?></td>
+                                                    </tr>
+                                                    <tr style="background-color:#dfdbdb">
+                                                        <td>Đường kính x Hành trình pít tông</td>
+                                                        <td><?php echo $info[0]['info_DiameterxPistonStroke'] ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Tỷ số nén</td>
+                                                        <td><?php echo $info[0]['info_CompRatio'] ?></td>
+                                                    </tr>
+
                                                 </tbody>
                                             </table>
                                         </div>

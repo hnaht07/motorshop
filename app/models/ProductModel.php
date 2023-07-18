@@ -32,6 +32,11 @@ class ProductModel extends Model{
         return $data;
     }
 
+    public function searchbyName($table,$search,$field,$selectField)
+    {
+        $data = $this->db->tableBuilder($table)->selectBuilder($selectField)->whereLikeBuilder($field, '%'.$search.'%')->getAllBuilder();
+        return $data;
+    }
 
     public function insert($data,$table)
     {

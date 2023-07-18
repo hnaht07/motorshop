@@ -1109,6 +1109,28 @@ fieldset {
     position: absolute; }
     .search-box-offcanvas form .search-btn:hover {
       color: #e3a51e; }
+    .list-group{
+      position: relative;
+      font-size: 15px;
+      margin-left: 5px;
+      padding-left: 5px;
+      border: 1px solid #979898;
+      border-radius: 3px;
+    }
+    .list-group ul{
+      padding: 2px;
+      border-bottom: 1px solid #696363;
+      margin-bottom: 5px;
+      margin-right: 5px;
+    }
+    .list-group a{
+      color: #333333;
+    }
+    .list-group a:hover{
+      color: #e3a51e;
+    }
+    
+    
 
 /*------- mobile top bar settings start -------*/
 .mobile-settings {
@@ -1255,6 +1277,7 @@ fieldset {
       padding-right: 15px; }
     .offcanvas-search-box .search-btn:hover {
       color: #e3a51e; }
+    
 
 /*-------- off canvas mini cart start --------*/
 .minicart-inner {
