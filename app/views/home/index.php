@@ -101,19 +101,19 @@
                         ?>
                             <div class="product-item mb-50">
                                 <div class="product-thumb">
-                                    <a href="product-details.html">
+                                    <a href="chi-tiet-san-pham?id=<?php echo $value['product_Id'] ?>">
                                         <img src="<?php echo _WEB_ROOT . $value['product_Img'] ?>" alt="">
                                     </a>
                                 </div>
                                 <div class="product-content">
                                     <h5 class="product-name">
-                                        <a href="product-details.html"><?php echo $value['product_Name'] ?></a>
+                                        <a href="chi-tiet-san-pham?id=<?php echo $value['product_Id'] ?>"><?php echo $value['product_Name'] ?></a>
                                     </h5>
                                     <div class="price-box">
                                         <span class="price-regular"><?php echo $value['product_downPrice'] ?></span>
                                         <span class="price-old"><del><?php echo $value['product_Price'] ?></del></span>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         <?php
@@ -213,4 +213,3 @@
     <!-- brand area end -->
 </main>
 <!-- main wrapper end -->
-

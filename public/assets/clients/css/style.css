@@ -1110,24 +1110,32 @@ fieldset {
     .search-box-offcanvas form .search-btn:hover {
       color: #e3a51e; }
     .list-group{
-      position: relative;
+      position: fixed;
       font-size: 15px;
       margin-left: 5px;
       padding-left: 5px;
       border: 1px solid #979898;
       border-radius: 3px;
+      z-index: 9999;
+      background-color: #fff;
+      width: 24%;
     }
     .list-group ul{
       padding: 2px;
       border-bottom: 1px solid #696363;
       margin-bottom: 5px;
       margin-right: 5px;
+      
     }
     .list-group a{
       color: #333333;
     }
     .list-group a:hover{
       color: #e3a51e;
+    }
+    .not-vi{
+        visibility: hidden;
+        opacity: 0;
     }
     
     

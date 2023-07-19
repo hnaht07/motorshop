@@ -98,13 +98,14 @@
                                             <button class="search-btn" type="submit" name="submit"><i class="ion-ios-search-strong"></i></button>
                                         </form>
                                     </div>
-                                    <div class="list-group" id="show_list">
-                                        
-                                    </div>
+                                    <div class="list-group not-vi" id="show_list">
 
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -158,13 +159,15 @@
             <div class="off-canvas-inner">
                 <!-- search box start -->
                 <div class="search-box-offcanvas">
-                    <form>
-                        <input type="text" placeholder="Tìm Kiếm...">
-                        <button class="search-btn"><i class="ion-ios-search-strong"></i></button>
+                    <form method="post" action="<?php echo _WEB_ROOT ?>/product/search_product">
+                        <input type="text" name="search" id="search" placeholder="Tìm Kiếm...">
+                        <button class="search-btn" type="submit" name="submit"><i class="ion-ios-search-strong"></i></button>
                     </form>
                 </div>
                 <!-- search box end -->
+                <div class="list-group not-vi" id="show_list">
 
+                </div>
                 <!-- mobile menu start -->
                 <div class="mobile-navigation">
                     <!-- mobile menu navigation start -->
