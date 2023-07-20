@@ -78,9 +78,9 @@
                                     <!-- main menu navbar start -->
                                     <nav class="desktop-menu">
                                         <ul>
-                                            <li class="active"><a href="<?php echo _WEB_ROOT ?>/home">Home</i></a></li>
-                                            <li><a href="san-pham?page=1">shop</i></a></li>
-                                            <li><a href="#">Blog</i></a></li><!--Sửa-->
+                                            <li <?php echo ($active == 'home') ? 'class="active"': 'false' ;?>><a href="<?php echo _WEB_ROOT ?>/home">Trang Chủ</i></a></li>
+                                            <li <?php echo ($active == 'product') ? 'class="active"' : 'false' ?>><a href="<?php echo _WEB_ROOT ?>/san-pham?page=1">shop</i></a></li>
+                                            <li><a href="#">Tin Tức</i></a></li><!--Sửa-->
                                             <li><a href="#">Contact us</a></li><!--Sửa-->
                                         </ul>
                                     </nav>
@@ -160,14 +160,15 @@
                 <!-- search box start -->
                 <div class="search-box-offcanvas">
                     <form method="post" action="<?php echo _WEB_ROOT ?>/product/search_product">
-                        <input type="text" name="search" id="search" placeholder="Tìm Kiếm...">
+                        <input type="text" name="search_mb" id="search_mb" placeholder="Tìm Kiếm...">
                         <button class="search-btn" type="submit" name="submit"><i class="ion-ios-search-strong"></i></button>
                     </form>
+                    <div class="list-group_mb not-vi" id="show_list_mb">
+
+                    </div>
                 </div>
                 <!-- search box end -->
-                <div class="list-group not-vi" id="show_list">
 
-                </div>
                 <!-- mobile menu start -->
                 <div class="mobile-navigation">
                     <!-- mobile menu navigation start -->
@@ -175,7 +176,7 @@
                         <ul class="mobile-menu">
                             <li class="menu-item-has-children"><a href="<?php echo _WEB_ROOT ?>/home">Trang Chủ</a></li>
                             <li class="menu-item-has-children "><a href="<?php echo _WEB_ROOT ?>/san-pham?page=1">Shop</a></li>
-                            <li class=" menu-item-has-children "><a href=" #">Blog</a></li>
+                            <li class=" menu-item-has-children "><a href=" #">Tin Tức</a></li>
                             <li><a href="#">Contact us</a></li>
                         </ul>
                     </nav>

@@ -7,7 +7,7 @@
                 <!-- footer widget item start -->
                 <div class="col-xl-5 col-lg-3 col-md-6">
                     <div class="widget-item mt-40">
-                        <h5 class="widget-title">My Account</h5>
+                        <h5 class="widget-title">Về Chúng Tôi</h5>
                         <div class="widget-body">
                             <ul class="location-wrap">
                                 <li><i class="ion-ios-location-outline"></i>77/5/12 Lê Hoàng Phái P17 Gò Vấp TPHCM</li>
@@ -28,7 +28,7 @@
                 <!-- footer widget item start -->
                 <div class="col-xl-2 col-lg-3 col-md-6">
                     <div class="widget-item mt-40">
-                        <h5 class="widget-title">Information</h5>
+                        <h5 class="widget-title">Nav</h5>
                         <div class="widget-body">
                             <ul class="useful-link">
                                 <li><a href="home">Trang Chủ</a></li>

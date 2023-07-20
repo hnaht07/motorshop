@@ -42,7 +42,6 @@ class App{
         $url = $this->getUrl();
 
         $url = $this->__routes->handleRoute($url);
-
         //Middleware App
         $this->handleGlobalMiddleware($this->__dbApp);
         $this->handleRouteMiddleware($this->__routes->getUri(), $this->__dbApp);

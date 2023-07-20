@@ -1,5 +1,4 @@
 <?php
-
 ?>
 <!-- main wrapper start -->
 <main>
@@ -14,7 +13,7 @@
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="<?php echo _WEB_ROOT ?>/home">Home</a></li>
                                 <li class="breadcrumb-item"><a href="<?php echo _WEB_ROOT ?>/san-pham?page=1">Shop</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Chi Tiết Sản Phẩm</li>
+                                <li class="breadcrumb-item active" aria-current="page"><?php echo $data['page_title'] ?></li>
                             </ul>
                         </nav>
                     </div>
@@ -61,8 +60,18 @@
                                         <span><a href="#">1 Review(s)</a></span>
                                     </div>
                                     <div class="price-box">
-                                        <span class="regular-price"><?php echo $dataShow[0]['product_downPrice'] ?> VNĐ</span>
-                                        <span class="old-price"><del><?php echo $dataShow[0]['product_Price'] ?> VNĐ</del></span>
+                                        <?php
+                                        if ($dataShow[0]['product_downPrice'] != '0' && $dataShow[0]['product_downPrice'] != null) {
+                                        ?>
+                                            <span class="regular-price"><?php echo number_format($dataShow[0]['product_downPrice'], 0, ',', '.') ?> VNĐ</span>
+                                            <span class="old-price"><del><?php echo number_format($dataShow[0]['product_Price'], 0, ',', '.') ?> VNĐ</del></span>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <span class="regular-price"><?php echo number_format($dataShow[0]['product_Price'], 0, ',', '.') ?> VNĐ</span>
+                                        <?php
+                                        }
+                                        ?>
                                     </div>
                                     <p><?php echo $dataShow[0]['product_Desc'] ?></p>
                                     <div class="quantity-cart-box d-flex align-items-center mb-20">
@@ -269,18 +278,20 @@
                                         <?php
 
                                         foreach ($rel as $key => $value) {
+                                            $name = $value['product_Name'];
+                                            $name = str_replace(' ', '-', $name);
                                             if ($value['product_Id'] != $dataShow[0]['product_Id']) {
 
                                         ?>
                                                 <div class="product-item mb-50">
                                                     <div class="product-thumb">
-                                                        <a href="chi-tiet-san-pham?id=<?php echo $value['product_Id'] ?>">
+                                                        <a href="<?php echo _WEB_ROOT ?>/chi-tiet/<?php echo $name ?>">
                                                             <img src="<?php echo _WEB_ROOT . $value['product_Img'] ?>" alt="">
                                                         </a>
                                                     </div>
                                                     <div class="product-content">
                                                         <h5 class="product-name">
-                                                            <a href="chi-tiet-san-pham?id=<?php echo $value['product_Id'] ?>"><?php echo $value['product_Name'] ?></a>
+                                                            <a href="<?php echo _WEB_ROOT ?>/chi-tiet/<?php echo $name ?>"><?php echo $value['product_Name'] ?></a>
                                                         </h5>
                                                         <div class="price-box">
                                                             <span class="price-regular"><?php echo $value['product_downPrice'] ?></span>

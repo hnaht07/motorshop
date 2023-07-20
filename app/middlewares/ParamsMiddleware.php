@@ -4,7 +4,7 @@ class ParamsMiddleware extends Middlewares{
         if(!empty($_SERVER['QUERY_STRING'])){
             if ($_GET['id']) {
                 $id = $_GET['id'];
-                if (is_numeric($id)) {
+                if (is_numeric($id)) {     
                     if ($_SERVER['QUERY_STRING'] = 'id=' . $id) {
                         return $id;
                     } else {

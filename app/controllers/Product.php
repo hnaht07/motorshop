@@ -29,7 +29,7 @@ class Product extends Controller{
         }
         
         $this->data['content'] = 'products/index';
-        $this->data['page_title'] = 'Trang Chủ Sản Phẩm';
+        $this->data['page_active'] = 'product';
         $this->data['sub_content'] = $dataIndex;
         
         $dataPage = $this->products->countAll('tbl_product');
@@ -57,18 +57,21 @@ class Product extends Controller{
         $this->render('layouts/client_layout', $this->data);
     }
 
-    public function detail_product($id=0){
-        $id = $_GET['id'];
-        $dataDetail = $this->products->getById($id, 'tbl_product','product_Id');
-        $dataImg = $this->products->getById($id, 'tbl_product_img','product_Id');
-        $dataRel = $this->products->getById($dataDetail[0]['company_Id'], 'tbl_product','company_Id');
-        $dataInfo = $this->products->getById($dataDetail[0]['product_Id'], 'tbl_product_info','product_Id');
+    public function detail_product($name){
+        $name = str_replace('-', ' ', $name);
+        $getName = $this->products->getById("'$name'",'tbl_product','product_Name');
+        $id = $getName[0]['product_Id'];
+        $dataDetail = $this->products->getById($id, 'tbl_product', 'product_Id');
+        $dataImg = $this->products->getById($id, 'tbl_product_img', 'product_Id');
+        $dataRel = $this->products->getById($dataDetail[0]['company_Id'], 'tbl_product', 'company_Id');
+        $dataInfo = $this->products->getById($dataDetail[0]['product_Id'], 'tbl_product_info', 'product_Id');
         $this->data['content'] = 'products/detail';
-        $this->data['page_title'] = "Chi tiết sản phẩm";
+        $this->data['page_title'] = $name;
         $this->data['img'] = $dataImg;
         $this->data['sub_content'] = $dataDetail;
         $this->data['rel'] = $dataRel;
         $this->data['info'] = $dataInfo;
+        $this->data['page_active'] = 'product';
         
         //Render view
         $this->render('layouts/detail_layout', $this->data);

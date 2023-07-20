@@ -110,8 +110,19 @@
                                         <a href="chi-tiet-san-pham?id=<?php echo $value['product_Id'] ?>"><?php echo $value['product_Name'] ?></a>
                                     </h5>
                                     <div class="price-box">
-                                        <span class="price-regular"><?php echo $value['product_downPrice'] ?></span>
-                                        <span class="price-old"><del><?php echo $value['product_Price'] ?></del></span>
+                                        <?php
+                                        if ($value['product_downPrice'] != '0' && $value['product_downPrice'] != null) {
+                                        ?>
+                                            <span class="price-regular"><?php echo number_format($value['product_downPrice'], 0, ',', '.') ?> VNĐ</span>
+                                            <br />
+                                            <span class="price-old"><del><?php echo number_format($value['product_Price'], 0, ',', '.') ?> VNĐ</del></span>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <span class="price-regular"><?php echo number_format($value['product_Price'], 0, ',', '.') ?> VNĐ</span>
+                                        <?php
+                                        }
+                                        ?>
                                     </div>
 
                                 </div>

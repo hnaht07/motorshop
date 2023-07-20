@@ -6,7 +6,6 @@ class Route{
         unset($routes['default_controller']);
             
         $url = trim($url, '/');
-            
         if(empty($url)){
             $url = '/';
         }
@@ -28,6 +27,7 @@ class Route{
     static public function getFullUrl() {
         $uri = App::$app->getUrl();
         $url = _WEB_ROOT.$uri;
+        echo $url;
         return $url;
     }
 }

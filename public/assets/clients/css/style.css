@@ -1137,8 +1137,18 @@ fieldset {
         visibility: hidden;
         opacity: 0;
     }
-    
-    
+    .list-group_mb {
+      position: relative;
+      font-size: 15px;
+      margin-left: 5px;
+      padding-left: 5px;
+      border: 1px solid #979898;
+      border-radius: 3px;
+      background-color: #fff;
+    }
+    .list-group_mb a{
+      color: #333333;
+    }
 
 /*------- mobile top bar settings start -------*/
 .mobile-settings {
