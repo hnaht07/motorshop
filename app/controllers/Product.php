@@ -216,8 +216,11 @@ class Product extends Controller{
         }
         if($dataSearch != []){
             foreach ($dataSearch as $key => $value) {
+                $name = $value['product_Name'];
+                $name = str_replace(' ', '-', $name);
+                $href = _WEB_ROOT.'/chi-tiet/'.$name;
                 echo "<ul>";
-                echo "<a id='choose_res' href='"._WEB_ROOT."/chi-tiet-san-pham?id=".$value['product_Id']."'>";
+                echo "<a id='choose_res' href='$href'>";
                 echo "<li>";
                 echo $value['product_Name'];
                 echo "</li>";

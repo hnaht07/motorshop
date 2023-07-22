@@ -1,12 +1,20 @@
 <?php
 class News extends Controller {
     public $data = [];
+    public $news;
+    public function __construct()
+    {
+        $this->news = $this->model('NewsModel');
+    }
     public function index() {
-        $this->data['sub_content']['news_title'] = 'tin tức 1';
-        $this->data['sub_content']['news_content'] = 'nội dung 1';
-        $this->data['sub_content']['news_author'] = 'Thành';
-        $this->data['content'] = 'news/list';
-        $this->render('layouts/client_layout', $this->data);
+        $dataIndex = $this->news->getListAll('tbl_news');
+        $this->data['sub_content'] = $dataIndex;
+        $this->data['content'] = 'news/index';
+        $this->data['page_active'] = 'news';
+        $this->render('layouts/news_layout', $this->data);
+    }
+    public function detail_news(){
+        echo "detail";
     }
 }
 
