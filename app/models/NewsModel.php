@@ -1,8 +1,8 @@
 <?php 
 class NewsModel extends Model{
-    public function getListAll($table)
+    public function getListAll($table,$select = '*')
     {
-        $data =  $this->db->tableBuilder($table)->selectBuilder()->getAllBuilder();
+        $data =  $this->db->tableBuilder($table)->selectBuilder($select)->getAllBuilder();
         return $data;
     }
     public function getById($id, $table, $field)

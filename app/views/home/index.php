@@ -98,16 +98,18 @@
                         <!-- product single item start -->
                         <?php
                         foreach ($data['dataShow'] as $key => $value) {
+                            $name = $value['product_Name'];
+                            $name = str_replace(' ', '-', $name);
                         ?>
                             <div class="product-item mb-50">
                                 <div class="product-thumb">
-                                    <a href="chi-tiet-san-pham?id=<?php echo $value['product_Id'] ?>">
+                                    <a href="san-pham/<?php echo $name ?>">
                                         <img src="<?php echo _WEB_ROOT . $value['product_Img'] ?>" alt="">
                                     </a>
                                 </div>
                                 <div class="product-content">
                                     <h5 class="product-name">
-                                        <a href="chi-tiet-san-pham?id=<?php echo $value['product_Id'] ?>"><?php echo $value['product_Name'] ?></a>
+                                        <a href="san-pham/<?php echo $name ?>>"><?php echo $value['product_Name'] ?></a>
                                     </h5>
                                     <div class="price-box">
                                         <?php

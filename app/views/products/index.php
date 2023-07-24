@@ -89,23 +89,23 @@
                                 <div class="product-item mb-53">
 
                                     <div class="product-thumb">
-                                        <a href="chi-tiet/<?php echo $name ?>">
+                                        <a href="san-pham/<?php echo $name ?>">
                                             <img src="<?php echo _WEB_ROOT ?><?php echo $value['product_Img'] ?>" alt="">
                                         </a>
                                     </div>
                                     <div class="product-content">
                                         <h5 class="product-name">
-                                            <a href="chi-tiet/<?php echo $name ?>"><?php echo $value['product_Name'] ?></a>
+                                            <a href="san-pham/<?php echo $name ?>"><?php echo $value['product_Name'] ?></a>
                                         </h5>
                                         <div class="price-box">
-                                            <?php 
-                                                if($value['product_downPrice'] != '0' && $value['product_downPrice'] != null){
-                                            ?>
-                                            <span class="price-regular"><?php echo number_format($value['product_downPrice'],0,',','.') ?> VNĐ</span>
-                                            <br/>
-                                            <span class="price-old"><del><?php echo number_format($value['product_Price'], 0, ',', '.') ?> VNĐ</del></span>
                                             <?php
-                                            }else{
+                                            if ($value['product_downPrice'] != '0' && $value['product_downPrice'] != null) {
+                                            ?>
+                                                <span class="price-regular"><?php echo number_format($value['product_downPrice'], 0, ',', '.') ?> VNĐ</span>
+                                                <br />
+                                                <span class="price-old"><del><?php echo number_format($value['product_Price'], 0, ',', '.') ?> VNĐ</del></span>
+                                            <?php
+                                            } else {
                                             ?>
                                                 <span class="price-regular"><?php echo number_format($value['product_Price'], 0, ',', '.') ?> VNĐ</span>
                                             <?php

@@ -13,12 +13,12 @@ class News extends Controller {
         $this->data['page_active'] = 'news';
         $this->render('layouts/news_layout', $this->data);
     }
-    public function detail_news(){
-        echo "detail";
+    public function detail_news($name){
+        $dataDetail = $this->news->getById("'".reSlug($name)."'",'tbl_news','news_Title');
+        $this->data['sub_content'] = $dataDetail;
+        $this->data['content'] = 'news/detail';
+        $this->data['page_active'] = 'news';
+        $this->render('layouts/detail_news_layout', $this->data);
     }
 }
-
-
-
-
 ?>

@@ -31,3 +31,11 @@
             //Session::flash('msg','Thêm data thành công!');
             // $msg = Session::flash('msg');
             // echo $msg;
+            <blockquote>
+                                            <p>Quisque semper nunc vitae erat pellentesque, ac placerat arcu consectetur.
+                                                venenatis elit ac ultrices convallis. Duis est nisi, tincidunt ac urna sed,
+                                                cursus blandit lectus. In ullamcorper sit amet ligula ut eleifend. Proin
+                                                dictum
+                                                tempor ligula, ac feugiat metus. Sed finibus tortor eu scelerisque
+                                                scelerisque.</p>
+                                        </blockquote>

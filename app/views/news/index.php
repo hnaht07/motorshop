@@ -1,5 +1,4 @@
 <?php
-
 ?>
 <main>
     <!-- breadcrumb area start -->
@@ -30,28 +29,31 @@
                     <div class="row">
                         <?php
                         foreach ($dataShow as $key => $value) {
-                            $title = $value['news_Title'];
-                            $title = str_replace(' ', '-', $title);
+
                         ?>
                             <div class="col-xl-4 col-md-6">
                                 <!-- blog single item start -->
                                 <div class="blog-post-item mb-30">
                                     <div class="blog-thumb">
-                                        <a href="<?php echo _WEB_ROOT ?>/tin-tuc/<?php echo $title ?>">
+                                        <a href="<?php echo _WEB_ROOT ?>/tin-tuc/<?php echo toSlug($value['news_Title']); ?>">
                                             <img src="<?php echo _WEB_ROOT ?><?php echo $value['news_mainImg'] ?>" alt="blog thumb">
                                         </a>
                                     </div>
                                     <div class="blog-content">
                                         <h5 class="blog-title">
-                                            <a href="#">
+                                            <a href="<?php echo _WEB_ROOT ?>/tin-tuc/<?php echo toSlug($value['news_Title']); ?>">
                                                 <?php echo $value['news_Title'] ?>
                                             </a>
                                         </h5>
                                         <ul class="blog-meta">
-                                            <li><span>By: </span><?php echo $value['news_upName'] ?>,</li>
-                                            <li><span>On: </span><?php echo $value['news_Date'] ?></li>
+                                            <li><span>On: </span>
+                                                <?php
+                                                $date = date_create($value['news_Date']);
+                                                echo date_format($date, "d/m/Y");
+                                                ?>
+                                            </li>
                                         </ul>
-                                        <a href="#" class="read-more">Read More...</a>
+                                        <a href="<?php echo _WEB_ROOT ?>/tin-tuc/<?php echo toSlug($value['news_Title']); ?>" class="read-more">Read More...</a>
                                     </div>
                                 </div>
                                 <!-- blog single item start -->

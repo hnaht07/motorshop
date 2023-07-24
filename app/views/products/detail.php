@@ -3,7 +3,7 @@
 <!-- main wrapper start -->
 <main>
     <!-- breadcrumb area start -->
-    <div class="breadcrumb-area bg-img" data-bg="<?php echo _WEB_ROOT?>/public/assets/clients/images/banner/breadcrumb-banner.jpg">
+    <div class="breadcrumb-area bg-img" data-bg="<?php echo _WEB_ROOT ?>/public/assets/clients/images/banner/breadcrumb-banner.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -218,13 +218,13 @@
                                         ?>
                                                 <div class="product-item mb-50">
                                                     <div class="product-thumb">
-                                                        <a href="<?php echo _WEB_ROOT ?>/chi-tiet/<?php echo $name ?>">
+                                                        <a href="<?php echo _WEB_ROOT ?>/san-pham/<?php echo $name ?>">
                                                             <img src="<?php echo _WEB_ROOT . $value['product_Img'] ?>" alt="">
                                                         </a>
                                                     </div>
                                                     <div class="product-content">
                                                         <h5 class="product-name">
-                                                            <a href="<?php echo _WEB_ROOT ?>/chi-tiet/<?php echo $name ?>"><?php echo $value['product_Name'] ?></a>
+                                                            <a href="<?php echo _WEB_ROOT ?>/san-pham/<?php echo $name ?>"><?php echo $value['product_Name'] ?></a>
                                                         </h5>
                                                         <div class="price-box">
                                                             <span class="price-regular"><?php echo $value['product_downPrice'] ?></span>
