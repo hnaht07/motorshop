@@ -34,9 +34,4 @@
 </table>
 <a href=" <?php echo _WEB_ROOT ?>/product/insert_product"><input type="button" value="thêm sản phẩm"></a>
 <?php
-
-
-
-
-
 ?>

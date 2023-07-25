@@ -12,4 +12,7 @@ $routes['danh-sach-san-pham']= 'product/list_product';
 $routes['san-pham/(.+)'] = 'product/detail_product/$1';
 $routes['tin-tuc'] = 'news/index';
 $routes['tin-tuc/(.+)'] = 'news/detail_news/$1';
+$routes['admin'] = 'admin/dashboard';
+$routes['admin/insert'] = 'admin/dashboard/insert';
+$routes['admin/update/.+-(\d+)'] = 'admin/dashboard/update/$1';
 ?>

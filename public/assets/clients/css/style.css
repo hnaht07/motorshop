@@ -2940,6 +2940,9 @@ fieldset {
         padding: 0;
         text-align: center;
         background-color: transparent; }
+        .product-details-des .group-product-table td .pro-desc{
+        
+        }
 
 /*----- product details content end ----*/
 /*----- reviews area start -----*/
@@ -3236,6 +3239,30 @@ fieldset {
     color: #333333;
     text-transform: capitalize;
     font-size: 14px; }
+    .single-input-item label.lblImg {
+      display: block;
+      position: relative;
+      text-align: center;
+      cursor: pointer;
+      background-color: #e3a51e;
+      width: fit-content;
+      padding: 10px;
+      margin: auto;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .single-input-item p{
+      text-align: center;
+      margin: 20px 0px 30px 0px;
+      font-size: 12px;
+    }
+    .single-input-item #images{
+      width: 90%;
+      border: 1px solid black;
+      position: relative;
+      margin:auto;
+    }
     .single-input-item label.required:after {
       content: '*';
       color: red;
@@ -3250,6 +3277,9 @@ fieldset {
     width: 100%;
     font-size: 14px;
     background: #f7f7f7; }
+    .single-input-item input[type="file"]{
+      display: none;
+    }
     .single-input-item input:active, .single-input-item input:focus,
     .single-input-item textarea:active,
     .single-input-item textarea:focus {

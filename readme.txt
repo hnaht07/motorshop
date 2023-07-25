@@ -39,3 +39,7 @@
                                                 tempor ligula, ac feugiat metus. Sed finibus tortor eu scelerisque
                                                 scelerisque.</p>
                                         </blockquote>
+                                        .compare-table .table tbody tr td.pro-desc p {
+    color: #666666;
+    text-align: left;
+    margin: 0; }
