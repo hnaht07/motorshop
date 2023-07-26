@@ -15,15 +15,19 @@ let numOfFile = document.getElementById("num-of-files");
 
 function preview() {
     imageContainer.innerHTML = "";
-    numOfFile.textContent = `${fileInput.files.length} Đã Được Chọn`;
+    numOfFile.textContent = `${fileInput.files.length} Hình Đã Được Chọn`;
     for(i of fileInput.files){
         let reader = new FileReader();
-        
+        let figure = document.createElement("figure");
+        let figCap = document.createElement("figcaption");
+        figCap.innerText = i.name;
+        figure.appendChild(figCap);
         reader.onload=()=>{
             let img = document.createElement("img");
             img.setAttribute("src", reader.result);
-            img.setAttribute("id", "imgPre");
+            figure.insertBefore(img,figCap);
         }
+        imageContainer.appendChild(figure);
         reader.readAsDataURL(i);
 
     }

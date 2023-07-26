@@ -2,18 +2,23 @@
 class Dashboard extends Controller{
     public $data = [];
     public $admin;
-    public function index(){
-        $dataList = $this->admin->getWith('tbl_company cp', 'cp.company_Id', 'tbl_product pr', 'pr.company_Id');
-        $this->data['content'] = 'admin/index';
-        $this->data['page_title'] = 'Trang Danh Sản Phẩm';
-        $this->data['sub_content'] = $dataList;
-        //Render views
-        $this->render('layouts/admin_layout', $this->data);
-    }
+    
     public function __construct()
     {
         $this->admin = $this->model('ProductModel');
     }
+    public function index()
+    {
+        $dataList = $this->admin->getWith('tbl_company cp', 'cp.company_Id', 'tbl_product pr', 'pr.company_Id');
+        $this->data['content'] = 'admin/index';
+        $this->data['page_title'] = 'Trang Danh Sản Phẩm';
+        $this->data['sub_content'] = $dataList;
+        $dataCompany = $this->admin->getListAll('tbl_company');
+        $this->data['company'] = $dataCompany;
+        //Render views
+        $this->render('layouts/admin_layout', $this->data);
+    }
+
     public function insert()
     {
         $dataList = $this->admin->getListAll('tbl_product');

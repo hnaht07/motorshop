@@ -3259,9 +3259,18 @@ fieldset {
     }
     .single-input-item #images{
       width: 90%;
-      border: 1px solid black;
       position: relative;
       margin:auto;
+      display: flex;
+      justify-content: space-evenly;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .single-input-item #images img{
+        width: 100%;
+    }
+    .single-input-item #images figure {
+        width: 45%;
     }
     .single-input-item label.required:after {
       content: '*';
