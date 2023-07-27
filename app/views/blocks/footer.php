@@ -95,9 +95,9 @@
 <!--=== Active Js ===-->
 <script src="<?php echo _WEB_ROOT ?>/public/assets/clients/js/active.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
 
 <script src="<?php echo _WEB_ROOT ?>/public/assets/admin/js/preImages.js"></script>
-
+<script src="<?php echo _WEB_ROOT ?>/public/assets/admin/js/admin.js"></script>
 <script src="<?php echo _WEB_ROOT ?>/public/assets/clients/js/custom.js"></script>
 </body>

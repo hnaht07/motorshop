@@ -74,7 +74,7 @@ class Product extends Controller{
             foreach ($dataSearch as $key => $value) {
                 $name = $value['product_Name'];
                 $name = str_replace(' ', '-', $name);
-                $href = _WEB_ROOT.'/chi-tiet/'.$name;
+                $href = _WEB_ROOT.'/san-pham/'.$name;
                 echo "<ul>";
                 echo "<a id='choose_res' href='$href'>";
                 echo "<li>";

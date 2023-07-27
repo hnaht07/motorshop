@@ -14,5 +14,6 @@ $routes['tin-tuc'] = 'news/index';
 $routes['tin-tuc/(.+)'] = 'news/detail_news/$1';
 $routes['admin'] = 'admin/dashboard';
 $routes['admin/insert'] = 'admin/dashboard/insert';
+$routes['admin/info'] = 'admin/dashboard/info_product';
 $routes['admin/update/.+-(\d+)'] = 'admin/dashboard/update/$1';
 ?>

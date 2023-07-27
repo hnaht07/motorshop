@@ -9,6 +9,7 @@ class Dashboard extends Controller{
     }
     public function index()
     {
+        
         $dataList = $this->admin->getWith('tbl_company cp', 'cp.company_Id', 'tbl_product pr', 'pr.company_Id');
         $this->data['content'] = 'admin/index';
         $this->data['page_title'] = 'Trang Danh Sản Phẩm';
@@ -37,6 +38,33 @@ class Dashboard extends Controller{
         //Render views
         $this->render('layouts/admin_layout', $this->data);
     }
+
+    public function info_product(){
+        echo '<pre>';
+        print_r($_POST);
+        echo '</pre>';
+        if(isset($_POST['query'])){
+            $baseId = $_POST['query'];
+            $dataById = $this->admin->getById($baseId, 'tbl_product', 'product_Id');
+            echo json_encode($dataById);
+        }else{
+            echo "data has not been send";
+        }
+        // if($_REQUEST['proId']){
+        //     $baseId = $_REQUEST['proId'];
+        //     $dataById = $this->admin->getById($baseId,'tbl_product','product_Id');
+        //     echo json_encode($dataById);
+        // }else{
+        //     echo 0;
+        // }
+
+        $dataList = $this->admin->getListAll('tbl_product');
+        $this->data['content'] = 'admin/info';
+        $this->data['sub_content'] = $dataList;
+
+        $this->render('layouts/admin_layout', $this->data);
+    }
+
     public function render_insert()
     {
 

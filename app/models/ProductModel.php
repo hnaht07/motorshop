@@ -5,7 +5,7 @@ class ProductModel extends Model{
         $data =  $this->db->tableBuilder($table)->selectBuilder()->getAllBuilder();
         return $data;
     }
-     public function getById($id,$table,$field){
+    public function getById($id,$table,$field){
         $data = $this->db->tableBuilder($table)->selectBuilder()->whereBuilder($field,'=',$id)->getAllBuilder();
         return $data;
     }
