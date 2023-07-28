@@ -14,6 +14,7 @@ class Dashboard extends Controller{
         $this->data['content'] = 'admin/index';
         $this->data['page_title'] = 'Trang Danh Sản Phẩm';
         $this->data['sub_content'] = $dataList;
+        $this->data['page_active'] = 'index';
         $dataCompany = $this->admin->getListAll('tbl_company');
         $this->data['company'] = $dataCompany;
         //Render views
@@ -26,6 +27,7 @@ class Dashboard extends Controller{
         $this->data['content'] = 'admin/insert';
         $this->data['page_title'] = 'Thêm Sản Phẩm';
         $this->data['sub_content'] = $dataList;
+        $this->data['page_active'] = 'add';
         // $dataCompany = $this->admin->getListAll('tbl_company');
         // $this->data['company'] = $dataCompany;
         // $oldId = $_GET['id'];
@@ -38,30 +40,21 @@ class Dashboard extends Controller{
         //Render views
         $this->render('layouts/admin_layout', $this->data);
     }
-
-    public function info_product(){
-        echo '<pre>';
-        print_r($_POST);
-        echo '</pre>';
+    
+    public function info_action(){
         if(isset($_POST['query'])){
             $baseId = $_POST['query'];
-            $dataById = $this->admin->getById($baseId, 'tbl_product', 'product_Id');
-            echo json_encode($dataById);
+            $data = $this->admin->getById($baseId, 'tbl_product', 'product_Id');
+            echo json_encode($data);
         }else{
             echo "data has not been send";
         }
-        // if($_REQUEST['proId']){
-        //     $baseId = $_REQUEST['proId'];
-        //     $dataById = $this->admin->getById($baseId,'tbl_product','product_Id');
-        //     echo json_encode($dataById);
-        // }else{
-        //     echo 0;
-        // }
-
+    }
+    public function info_product() {
         $dataList = $this->admin->getListAll('tbl_product');
         $this->data['content'] = 'admin/info';
         $this->data['sub_content'] = $dataList;
-
+        $this->data['page_active'] = 'info';
         $this->render('layouts/admin_layout', $this->data);
     }
 

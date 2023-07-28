@@ -1,28 +1,36 @@
-<?php 
-echo '<pre>';
-print_r($baseProduct);
-echo '</pre>';
+<?php
 ?>
 <div id="updateInfo-product">
     <div class="myaccount-content">
         <h3>Thông Tin Chi Tiết</h3>
         <div class="account-details-form">
-            <div class="single-input-item">
-                <label for="">Chọn Sản Phẩm</label>
-                <select name="productList" id="productList" onchange="selectProduct(this)">
-                    <option value="">--Chọn--</option>
-                    <?php
-                    foreach ($dataShow as $key => $value) {
-                    ?>
-                        <a href="home">
-                            <option value="<?php echo $value['product_Id'] ?>">
-                                <?php echo $value['product_Name'] ?>
-                            </option>
-                        </a>
-                    <?php
-                    }
-                    ?>
-                </select>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="single-input-item">
+                        <label for="productList">Chọn Sản Phẩm</label>
+                        <select name="productList" id="productList">
+                            <option value="">--Chọn--</option>
+                            <?php
+                            foreach ($dataShow as $key => $value) {
+                            ?>
+                                <a href="home">
+                                    <option value="<?php echo $value['product_Id'] ?>">
+                                        <?php echo $value['product_Name'] ?>
+                                    </option>
+                                </a>
+                            <?php
+                            }
+                            ?>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="single-input-item">
+                        <button type="button" class="btn" id="searching">Select</button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

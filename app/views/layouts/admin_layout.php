@@ -1,16 +1,15 @@
 <?php
 $data = array();
 $data['dataShow'] = $sub_content;
-$data['baseProduct'] = $baseProduct;
-$data['page_title'] = $page_title;
+$data['active'] = $page_active;
 $data['old'] = $oldData;
 $data['img'] = $oldImg;
 $data['company'] = $company;
 $data['oldComp'] = $oldComp;
 $data['CompName'] = $companyName;
-$this->render('blocks/header', $sub_content);
-$this->render('blocks/menuAdmin', $sub_content);
+$this->render('blocks/header', $data);
+$this->render('blocks/menuAdmin', $data);
 $this->render($content, $data);
-$this->render('blocks/endAdmin', $sub_content);
-$this->render('blocks/footer', $sub_content);
+$this->render('blocks/endAdmin', $data);
+$this->render('blocks/footer', $data);
 ?>
