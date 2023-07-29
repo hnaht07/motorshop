@@ -9,7 +9,6 @@ class Dashboard extends Controller{
     }
     public function index()
     {
-        
         $dataList = $this->admin->getWith('tbl_company cp', 'cp.company_Id', 'tbl_product pr', 'pr.company_Id');
         $this->data['content'] = 'admin/index';
         $this->data['page_title'] = 'Trang Danh Sản Phẩm';
@@ -23,6 +22,8 @@ class Dashboard extends Controller{
 
     public function insert()
     {
+        $request = new Request();
+
         $dataList = $this->admin->getListAll('tbl_product');
         $this->data['content'] = 'admin/insert';
         $this->data['page_title'] = 'Thêm Sản Phẩm';
@@ -38,23 +39,6 @@ class Dashboard extends Controller{
         // $this->data['oldImg'] = $oldImg;
         // $this->data['oldComp'] = $oldComp;
         //Render views
-        $this->render('layouts/admin_layout', $this->data);
-    }
-    
-    public function info_action(){
-        if(isset($_POST['query'])){
-            $baseId = $_POST['query'];
-            $data = $this->admin->getById($baseId, 'tbl_product', 'product_Id');
-            echo json_encode($data);
-        }else{
-            echo "data has not been send";
-        }
-    }
-    public function info_product() {
-        $dataList = $this->admin->getListAll('tbl_product');
-        $this->data['content'] = 'admin/info';
-        $this->data['sub_content'] = $dataList;
-        $this->data['page_active'] = 'info';
         $this->render('layouts/admin_layout', $this->data);
     }
 
@@ -118,7 +102,23 @@ class Dashboard extends Controller{
         $response = new Response();
         $response->redirect('product/list_product');
     }
-
+    
+    public function info_action(){
+        if(isset($_POST['query'])){
+            $baseId = $_POST['query'];
+            $data = $this->admin->getById($baseId, 'tbl_product_info', 'product_Id');
+            echo json_encode($data);
+        }else{
+            echo "data has not been send";
+        }
+    }
+    public function info_product() {
+        $dataList = $this->admin->getListAll('tbl_product');
+        $this->data['content'] = 'admin/info';
+        $this->data['sub_content'] = $dataList;
+        $this->data['page_active'] = 'info';
+        $this->render('layouts/admin_layout', $this->data);
+    }
     public function render_update()
     {
         $idUpdate = $_POST['idsp'];
@@ -162,6 +162,7 @@ class Dashboard extends Controller{
     
     public function delete_product()
     {
+        
         if ($_GET['id']) {
             $id = $_GET['id'];
             $this->admin->delete($id, 'tbl_product');

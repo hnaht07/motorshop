@@ -6,7 +6,7 @@
             <form action="#">
                 <div class="single-input-item">
                     <label for="product-name" class="required">Nhập Tên Sản Phẩm</label>
-                    <input type="text" id="product-name" placeholder="Nhập Tên Sản Phẩm" />
+                    <input type="text" id="product-name" placeholder="Nhập Tên Sản Phẩm" require />
                 </div>
                 <div class="single-input-item">
                     <label for="product-desc">Mô tả sản phẩm</label>
@@ -40,7 +40,7 @@
                     <div class="col-lg-6">
                         <div class="single-input-item">
                             <label>Hình Ảnh Chi Tiết</label>
-                            <input type="file" id="product-imgs" accept="image/*" multiple="multiple" onchange="preview()" />
+                            <input type="file" id="product-imgs" name="product-imgs[]" accept="image/*" multiple="multiple" onchange="preview()" />
                             <label for="product-imgs" class="lblImg">
                                 <i class="fa fa-upload"></i> &nbsp; Chọn Hình Ảnh
                             </label>
@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="single-input-item">
-                    <button class=" btn ">Thêm </button>
+                    <button type="submit" class="btn">Thêm </button>
                 </div>
             </form>
         </div>

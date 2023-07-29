@@ -33,8 +33,6 @@
                                                                     <?php
                                                                     }
                                                                     ?>
-
-
                                                                 </td>
                                                                 <td><a href="#"><i class="fa fa-pencil btn"></i></a><a href="#"><i class="fa fa-trash-o btn"></i></a></td>
                                                             </tr>

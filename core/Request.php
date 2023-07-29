@@ -72,9 +72,6 @@
             $this->__messages = $message;
             
         }
-
-        
-
         //run validate
         public function validate(){
             $this->__rules = array_filter($this->__rules);
