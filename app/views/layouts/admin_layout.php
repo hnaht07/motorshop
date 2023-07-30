@@ -2,11 +2,10 @@
 $data = array();
 $data['dataShow'] = $sub_content;
 $data['active'] = $page_active;
-$data['old'] = $oldData;
-$data['img'] = $oldImg;
+$data['errors'] = $errors;
+$data['old'] = $old;
+$data['img'] = $img;
 $data['company'] = $company;
-$data['oldComp'] = $oldComp;
-$data['CompName'] = $companyName;
 $this->render('blocks/header', $data);
 $this->render('blocks/menuAdmin', $data);
 $this->render($content, $data);

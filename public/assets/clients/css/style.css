@@ -3235,6 +3235,9 @@ fieldset {
 /*------- input box style css start -------*/
 .single-input-item {
   margin-top: 20px; }
+    .single-input-item span.error{
+      color: #e74c3c;
+    }
   .single-input-item label {
     color: #333333;
     text-transform: capitalize;
@@ -3288,6 +3291,9 @@ fieldset {
     background: #f7f7f7; }
     .single-input-item input[type="file"]{
       display: none;
+    }
+    .single-input-item input.errors{
+      border: 1px solid red;
     }
     .single-input-item input:active, .single-input-item input:focus,
     .single-input-item textarea:active,

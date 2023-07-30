@@ -64,13 +64,11 @@
         //định nghĩa các rule của validate
         public function rules($rules=[]){
             $this->__rules = $rules;
-            
         }
 
         //các thông báo cho từng rule
         public function message($message = []) {
             $this->__messages = $message;
-            
         }
         //run validate
         public function validate(){
@@ -137,16 +135,12 @@
                                 }
                             }
                         }
-                            
-
                     }
-
                 }
             }
             $sessionKey = Session::isInvalid();
             Session::flash($sessionKey.'_errors' , $this->errors());
             Session::flash($sessionKey . '_old', $this->getField());
-
             return $checkValidate;
         }
 

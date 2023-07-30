@@ -1,7 +1,7 @@
 <!-- main wrapper start -->
 <main>
     <!-- breadcrumb area start -->
-    <div class="breadcrumb-area bg-img" data-bg="assets/img/banner/breadcrumb-banner.jpg">
+    <div class="breadcrumb-area bg-img" data-bg="public/assets/clients/images/banner/breadcrumb-banner.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-12">
