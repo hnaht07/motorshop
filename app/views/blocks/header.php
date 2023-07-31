@@ -19,10 +19,10 @@
     <link href="<?php echo _WEB_ROOT ?>/public/assets/admin/css/upImages.css" rel="stylesheet">
     <!-- Modernizer JS -->
     <script src="<?php echo _WEB_ROOT ?>/public/assets/clients/js/modernizr-2.8.3.min.js"></script>
-
+    <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-
-
+    <!-- sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>

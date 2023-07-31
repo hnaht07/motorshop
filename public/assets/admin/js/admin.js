@@ -41,4 +41,16 @@ $(document).ready(function(){
             console.log("Error")
         }
     });
+    $('#product-name').keyup(function(){
+        $(this).removeClass('errors');
+        $('#error_name').addClass('not-vi');
+    });
+    $('#product-price').keyup(function(){
+        $(this).removeClass('errors');
+        $('#error_price').addClass('not-vi');
+    });
+    $('#product-desc').keyup(function(){
+        $(this).removeClass('errors');
+        $('#error_desc').addClass('not-vi');
+    });
 });

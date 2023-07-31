@@ -25,11 +25,10 @@ class Dashboard extends Controller{
         $this->data['errors'] = Session::flash('errors');
         $this->data['old'] = Session::flash('old');
         $this->data['msg'] = Session::flash('msg');
+        $this->data['valid'] = Session::flash('validate');
         $this->data['img'] = Session::flash('img');
-        // $dataList = $this->admin->getListAll('tbl_product');
         $this->data['content'] = 'admin/insert';
         $this->data['page_title'] = 'Thêm Sản Phẩm';
-        //$this->data['sub_content'] = $dataList;
         $this->data['page_active'] = 'add';
         $dataCompany = $this->admin->getListAll('tbl_company');
         $this->data['company'] = $dataCompany;
@@ -47,26 +46,31 @@ class Dashboard extends Controller{
                 'product-desc' => 'max:1000',
                 'product-price' => 'required',
                 'product-img' => 'required',
+                'compSelect' => 'required',
             ]);
             $request->message([
                 'product-name.required' => 'Vui Lòng Nhập Trường Này!',
                 'product-price.required' => 'Vui Lòng Nhập Trường Này!',
                 'product-desc.max' => 'Vui Lòng Nhập Dưới 1000 Kí Tự',
                 'product-img.required' => 'Vui Lòng Chọn Hình Ảnh!',
+                'compSelect.required' => 'Vui Lòng Chọn Hãng Xe!',
             ]);
 
             $validate = $request->validate();
-            if (!$validate) {
+            var_dump($validate);
+            if ($validate) {
                 $imgPath = $_FILES['product-img']['name'];
                 Session::flash('img',$imgPath);
                 Session::flash('errors', $request->errors());
                 Session::flash('old', $request->getField());
                 Session::flash('msg', "something was Wrong");
+            }else{
+                Session::flash('msg', "nice Work!");
             }
             
         }
-        $response = new Response();
-        $response->redirect('them');
+        // $response = new Response();
+        // $response->redirect('them');
 
         // $dataInsert = [];
         // $dataImg = [];

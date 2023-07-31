@@ -1,6 +1,6 @@
 <?php
+echo $msg;
 ?>
-
 <!-- Single Tab Content Start -->
 <div id="add-product">
     <div class="myaccount-content">
@@ -10,19 +10,19 @@
                 <div class="single-input-item">
                     <label for="product-name" class="required">Nhập Tên Sản Phẩm</label>
                     <input class="<?php echo (!empty($errors) && array_key_exists('product-name', $errors)) ? 'errors' : false ?>" type="text" id="product-name" name="product-name" placeholder="Nhập Tên Sản Phẩm" value="<?php echo (!empty($old)) ? $old['product-name'] : false ?>" />
-                    <span class="error"><?php echo (!empty($errors) && array_key_exists('product-name', $errors)) ? $errors['product-name'] : false ?></span>
+                    <span class="error" id="error_name"><?php echo (!empty($errors) && array_key_exists('product-name', $errors)) ? $errors['product-name'] : false ?></span>
                 </div>
                 <div class="single-input-item">
                     <label for="product-desc">Mô tả sản phẩm</label>
                     <textarea class="<?php echo (!empty($errors) && array_key_exists('product-desc', $errors)) ? 'errors' : false ?>" id="product-desc" name="product-desc" cols="30" rows="10" placeholder="Mô tả sản phẩm" value="<?php echo (!empty($old)) ? $old['product-desc'] : false ?>"></textarea>
-                    <span class="error"><?php echo (!empty($errors) && array_key_exists('product-desc', $errors)) ? $errors['product-desc'] : false ?></span>
+                    <span class="error" id="error_desc"><?php echo (!empty($errors) && array_key_exists('product-desc', $errors)) ? $errors['product-desc'] : false ?></span>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="single-input-item">
                             <label for="product-price" class="required">Giá sản phẩm</label>
                             <input class="<?php echo (!empty($errors) && array_key_exists('product-price', $errors)) ? 'errors' : false ?>" type="text" id="product-price" name="product-price" placeholder="Giá sản phẩm" value="<?php echo (!empty($old)) ? $old['product-price'] : false ?>" />
-                            <span class="error"><?php echo (!empty($errors) && array_key_exists('product-price', $errors)) ? $errors['product-price'] : false ?></span>
+                            <span class="error" id="error_price"><?php echo (!empty($errors) && array_key_exists('product-price', $errors)) ? $errors['product-price'] : false ?></span>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -40,8 +40,18 @@
                             <label for="product-img" class="lblImg">
                                 <i class="fa fa-upload"></i> &nbsp; Chọn Hình Ảnh
                             </label>
-                            <span class="error"><?php echo (!empty($errors) && array_key_exists('product-img', $errors)) ? $errors['product-img'] : false ?></span>
-                            <img id="chooseImg">
+                            <?php
+                            if (empty($img)) {
+                            ?>
+                                <span class="error"><?php echo (!empty($errors) && array_key_exists('product-img', $errors)) ? $errors['product-img'] : false ?></span>
+                                <img id="chooseImg">
+                            <?php
+                            } else {
+                            ?>
+                                <img id="chooseImg" src="<?php echo _WEB_ROOT ?>/public/assets/admin/images/<?php echo $img ?>">
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -58,7 +68,7 @@
                     <div class="col-lg-6">
                         <div class="single-input-item">
                             <label class="required">Hãng Xe</label>
-                            <select name="" id="">
+                            <select name="compSelect" id="compSelect">
                                 <option value="0">--Chọn--</option>
                                 <?php
                                 foreach ($company as $key => $value) {
@@ -68,6 +78,7 @@
                                 }
                                 ?>
                             </select>
+                            <span class="error" id="error_comp"><?php echo (!empty($errors) && array_key_exists('compSelect', $errors)) ? $errors['compSelect'] : false ?></span>
                         </div>
                     </div>
                 </div>
