@@ -4,6 +4,7 @@ $data['dataShow'] = $sub_content;
 $data['active'] = $page_active;
 $data['errors'] = $errors;
 $data['msg'] = $msg;
+$data['status'] = $status;
 $data['old'] = $old;
 $data['img'] = $img;
 $data['comp'] = $comp;

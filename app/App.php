@@ -121,6 +121,10 @@ class App{
         
     }
 
+    public function getCurrentController(){
+        return $this->__controller;
+    }
+
     public function loadErrors($name = '404', $data = []){
         extract($data);
         require_once 'errors/'.$name.'.php';

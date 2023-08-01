@@ -25,7 +25,7 @@ class Dashboard extends Controller{
         $this->data['errors'] = Session::flash('errors');
         $this->data['old'] = Session::flash('old');
         $this->data['msg'] = Session::flash('msg');
-        $this->data['valid'] = Session::flash('validate');
+        $this->data['status'] = Session::flash('status');
         $this->data['img'] = Session::flash('img');
         $this->data['content'] = 'admin/insert';
         $this->data['page_title'] = 'Thêm Sản Phẩm';
@@ -42,35 +42,62 @@ class Dashboard extends Controller{
         $request = new Request();
         if($request->isPost()){
             $request->rules([
-                'product-name' => 'required',
-                'product-desc' => 'max:1000',
-                'product-price' => 'required',
-                'product-img' => 'required',
-                'compSelect' => 'required',
+                'product_name' => 'required',
+                'product_desc' => 'max:1000',
+                'product_price' => 'required|callback_check_price',
+                'product-img' => 'callback_check_img',
+                'compSelect' => 'callback_check_comp',
             ]);
             $request->message([
-                'product-name.required' => 'Vui Lòng Nhập Trường Này!',
-                'product-price.required' => 'Vui Lòng Nhập Trường Này!',
-                'product-desc.max' => 'Vui Lòng Nhập Dưới 1000 Kí Tự',
-                'product-img.required' => 'Vui Lòng Chọn Hình Ảnh!',
-                'compSelect.required' => 'Vui Lòng Chọn Hãng Xe!',
+                'product_name.required' => 'Vui Lòng Nhập Trường Này!',
+                'product_price.required' => 'Vui Lòng Nhập Trường Này!',
+                'product_price.callback_check_price' => 'Chỉ Được Nhập Số!',
+                'product-img.callback_check_img' => 'Vui Lòng Chọn Hình Ảnh!',
+                'product_desc.max' => 'Vui Lòng Nhập Dưới 1000 Kí Tự',
+                'compSelect.callback_check_comp' => 'Vui Lòng Chọn Hãng Xe!',
             ]);
 
             $validate = $request->validate();
-            var_dump($validate);
-            if ($validate) {
-                $imgPath = $_FILES['product-img']['name'];
-                Session::flash('img',$imgPath);
+            if (!$validate) {
                 Session::flash('errors', $request->errors());
                 Session::flash('old', $request->getField());
-                Session::flash('msg', "something was Wrong");
+                Session::flash('msg', "Có Lỗi Xảy Ra!");
+                Session::flash('status','error');
             }else{
-                Session::flash('msg', "nice Work!");
+                
+                $dataInsert = [];
+                $dataImg = [];
+                //render insert product
+                $dataInsert['product_Id'] = '';
+                $dataInsert['product_Name'] = $_POST['product_name'];
+                $dataInsert['product_Desc'] = $_POST['product_desc'];
+                $dataInsert['product_Price'] = $_POST['product_price'];
+                if ($_POST['product_downprice'] != '') {
+                    $dataInsert['product_downPrice'] = $_POST['product_downprice'];
+                } else {
+                    $dataInsert['product_downPrice'] = '0';
+                }
+                $dataInsert['product_Status'] = 0;
+                if ($_FILES['product-img']['name'] != '') {
+
+                    $upload_dir = SITE_ROOT . "/public/assets/admin/uploads/";
+                    $upload_file = $upload_dir . basename($_FILES['product-img']['name']);
+                    $target_dir = "/public/assets/admin/uploads/";
+                    $target_img = $target_dir . basename($_FILES['product-img']['name']);
+                    move_uploaded_file($_FILES['product-img']['tmp_name'], $upload_file);
+                    $dataInsert['product_Img'] = $target_img;
+                } else {
+                    $dataInsert['product_Img'] = 'không có hình mô tả';
+                }
+                $dataInsert['company_Id'] = $_POST['compSelect'];
+                $this->admin->insert($dataInsert, 'tbl_product');
+                Session::flash('msg', "Thêm Thành Công!");
+                Session::flash('status', 'success');
             }
             
         }
-        // $response = new Response();
-        // $response->redirect('them');
+        $response = new Response();
+        $response->redirect('them');
 
         // $dataInsert = [];
         // $dataImg = [];
@@ -128,6 +155,26 @@ class Dashboard extends Controller{
 
         // $response = new Response();
         // $response->redirect('product/list_product');
+    }
+
+    public function check_comp($compSelect){
+        if(!empty($compSelect) || $compSelect > 0){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
+    public function check_img(){
+        $img = $_FILES['product-img']['name'];
+        if($img != ''){
+            return true;
+        } return false;
+    }
+    public function check_price($product_price){
+        if(is_numeric($product_price)){
+            return true;
+        } return false;
     }
     
     public function info_action(){
@@ -189,13 +236,12 @@ class Dashboard extends Controller{
     
     public function delete_product()
     {
-        
-        if ($_GET['id']) {
-            $id = $_GET['id'];
+        if(isset($_POST['id'])){
+            $id = $_POST['id'];
             $this->admin->delete($id, 'tbl_product');
         }
-        $response = new Response();
-        $response->redirect('product/list_product');
+        
+        
     }
 }
 ?>

@@ -135,6 +135,20 @@
                                 }
                             }
                         }
+                        if(preg_match('~^callback_(.+)~is',$ruleName,$callbackArr)){
+                            if(!empty($callbackArr[1])){
+                                $callbackName = $callbackArr[1];
+                                $controller = App::$app->getCurrentController();
+                                if(method_exists($controller,$callbackName)){
+                                    $checkCallback = call_user_func_array([$controller, $callbackName],[trim($dataFields[$fieldName])]);
+                                    if(!$checkCallback){
+                                        $this->setErrors($fieldName,$ruleName);
+                                        $checkValidate = false;
+                                    }
+                                }
+                                
+                            }
+                        }
                     }
                 }
             }
@@ -142,6 +156,7 @@
             Session::flash($sessionKey.'_errors' , $this->errors());
             Session::flash($sessionKey . '_old', $this->getField());
             return $checkValidate;
+
         }
 
         //get errors 

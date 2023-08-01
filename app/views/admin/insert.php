@@ -1,5 +1,4 @@
 <?php
-echo $msg;
 ?>
 <!-- Single Tab Content Start -->
 <div id="add-product">
@@ -8,27 +7,27 @@ echo $msg;
         <div class="account-details-form">
             <form action="<?php echo _WEB_ROOT ?>/admin/dashboard/render_insert" method="post" enctype="multipart/form-data">
                 <div class="single-input-item">
-                    <label for="product-name" class="required">Nhập Tên Sản Phẩm</label>
-                    <input class="<?php echo (!empty($errors) && array_key_exists('product-name', $errors)) ? 'errors' : false ?>" type="text" id="product-name" name="product-name" placeholder="Nhập Tên Sản Phẩm" value="<?php echo (!empty($old)) ? $old['product-name'] : false ?>" />
-                    <span class="error" id="error_name"><?php echo (!empty($errors) && array_key_exists('product-name', $errors)) ? $errors['product-name'] : false ?></span>
+                    <label for="product_name" class="required">Nhập Tên Sản Phẩm</label>
+                    <input class="<?php echo (!empty($errors) && array_key_exists('product_name', $errors)) ? 'errors' : false ?>" type="text" id="product_name" name="product_name" placeholder="Nhập Tên Sản Phẩm" value="<?php echo (!empty($old)) ? $old['product_name'] : false ?>" />
+                    <span class="error" id="error_name"><?php echo (!empty($errors) && array_key_exists('product_name', $errors)) ? $errors['product_name'] : false ?></span>
                 </div>
                 <div class="single-input-item">
-                    <label for="product-desc">Mô tả sản phẩm</label>
-                    <textarea class="<?php echo (!empty($errors) && array_key_exists('product-desc', $errors)) ? 'errors' : false ?>" id="product-desc" name="product-desc" cols="30" rows="10" placeholder="Mô tả sản phẩm" value="<?php echo (!empty($old)) ? $old['product-desc'] : false ?>"></textarea>
-                    <span class="error" id="error_desc"><?php echo (!empty($errors) && array_key_exists('product-desc', $errors)) ? $errors['product-desc'] : false ?></span>
+                    <label for="product_desc">Mô tả sản phẩm</label>
+                    <textarea class="<?php echo (!empty($errors) && array_key_exists('product_desc', $errors)) ? 'errors' : false ?>" id="product_desc" name="product_desc" cols="30" rows="10" placeholder="Mô tả sản phẩm" value="<?php echo (!empty($old)) ? $old['product_desc'] : false ?>"></textarea>
+                    <span class="error" id="error_desc"><?php echo (!empty($errors) && array_key_exists('product_desc', $errors)) ? $errors['product_desc'] : false ?></span>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="single-input-item">
-                            <label for="product-price" class="required">Giá sản phẩm</label>
-                            <input class="<?php echo (!empty($errors) && array_key_exists('product-price', $errors)) ? 'errors' : false ?>" type="text" id="product-price" name="product-price" placeholder="Giá sản phẩm" value="<?php echo (!empty($old)) ? $old['product-price'] : false ?>" />
-                            <span class="error" id="error_price"><?php echo (!empty($errors) && array_key_exists('product-price', $errors)) ? $errors['product-price'] : false ?></span>
+                            <label for="product_price" class="required">Giá sản phẩm</label>
+                            <input class="<?php echo (!empty($errors) && array_key_exists('product_price', $errors)) ? 'errors' : false ?>" type="text" id="product_price" name="product_price" placeholder="Giá sản phẩm" value="<?php echo (!empty($old)) ? $old['product_price'] : false ?>" />
+                            <span class="error" id="error_price"><?php echo (!empty($errors) && array_key_exists('product_price', $errors)) ? $errors['product_price'] : false ?></span>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="single-input-item">
-                            <label for="product-downprice">Giảm Giá</label>
-                            <input type="text" id="product-downprice" name="product-downprice" placeholder="Giảm Giá" value="<?php echo (!empty($old)) ? $old['product-downPrice'] : false ?>" />
+                            <label for="product_downprice">Giảm Giá</label>
+                            <input type="text" id="product_downprice" name="product_downprice" placeholder="Giảm Giá" value="<?php echo (!empty($old)) ? $old['product_downprice'] : false ?>" />
                         </div>
                     </div>
                 </div>
@@ -40,18 +39,8 @@ echo $msg;
                             <label for="product-img" class="lblImg">
                                 <i class="fa fa-upload"></i> &nbsp; Chọn Hình Ảnh
                             </label>
-                            <?php
-                            if (empty($img)) {
-                            ?>
-                                <span class="error"><?php echo (!empty($errors) && array_key_exists('product-img', $errors)) ? $errors['product-img'] : false ?></span>
-                                <img id="chooseImg">
-                            <?php
-                            } else {
-                            ?>
-                                <img id="chooseImg" src="<?php echo _WEB_ROOT ?>/public/assets/admin/images/<?php echo $img ?>">
-                            <?php
-                            }
-                            ?>
+                            <span class="error"><?php echo (!empty($errors) && array_key_exists('product-img', $errors)) ? $errors['product-img'] : false ?></span>
+                            <img id="chooseImg">
                         </div>
                     </div>
                     <div class="col-lg-6">

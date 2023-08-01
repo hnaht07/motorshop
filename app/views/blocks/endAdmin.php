@@ -6,3 +6,4 @@
 <!-- my account wrapper end -->
 </main>
 <!-- main wrapper end -->
+<!-- sweet alert -->

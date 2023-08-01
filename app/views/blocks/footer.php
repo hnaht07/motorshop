@@ -100,4 +100,54 @@
 <script src="<?php echo _WEB_ROOT ?>/public/assets/admin/js/preImages.js"></script>
 <script src="<?php echo _WEB_ROOT ?>/public/assets/admin/js/admin.js"></script>
 <script src="<?php echo _WEB_ROOT ?>/public/assets/clients/js/custom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<?php
+if (isset($msg)) {
+?>
+    <script>
+        Swal.fire(
+            '<?php echo $msg; ?>',
+            '',
+            '<?php echo $status; ?>'
+        )
+    </script>
+<?php
+}
+?>
+<script>
+    $(document).ready(function() {
+        $('.delete_product').click(function(e) {
+            e.preventDefault();
+            var delete_id = $(this).closest("tr").find('.delete_id').val();
+            Swal.fire({
+                title: 'Bạn Muốn Xóa?',
+                text: "Sẽ Không Thể Lấy Lại Được Data Của Sản Phẩm Này!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "http://localhost:81/motorshop/admin/dashboard/delete_product",
+                        method: "POST",
+                        data: {
+                            id: delete_id
+                        },
+                        success: function(response) {
+                            Swal.fire({
+                                title: 'Xóa Thành Công!',
+                                text: 'Sản Phẩm Đã Được Xóa Khỏi Database.',
+                                icon:  'success'
+                            }).then((result) => {
+                                location.reload();
+                            })
+                        }
+                    });
+                }
+            })
+        });
+    });
+</script>
 </body>
