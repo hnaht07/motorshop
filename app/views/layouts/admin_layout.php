@@ -5,6 +5,7 @@ $data['active'] = $page_active;
 $data['errors'] = $errors;
 $data['msg'] = $msg;
 $data['status'] = $status;
+$data['status_code'] = $status_code;
 $data['old'] = $old;
 $data['img'] = $img;
 $data['comp'] = $comp;

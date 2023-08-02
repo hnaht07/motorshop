@@ -43,14 +43,14 @@ class ProductModel extends Model{
         $this->db->tableBuilder($table)->insertBuilder($data);
         return $this->db->lastInsertBuilder();
     }
-    public function update($data, $id , $table)
+    public function update($data, $id , $table,$field)
     {
-        $this->db->tableBuilder($table)->whereBuilder('product_Id', '=', $id)->updateBuilder($data);
+        $this->db->tableBuilder($table)->whereBuilder($field, '=', $id)->updateBuilder($data);
     }
 
-    public function delete($id,$table)
+    public function delete($id,$table,$condition)
     {
-        $this->db->tableBuilder($table)->whereBuilder('product_Id', '=', $id)->deleteBuilder();
+        $this->db->tableBuilder($table)->whereBuilder($condition, '=', $id)->deleteBuilder();
     }
 
     public function getWith($table, $id, $tableWith ,$idWith){

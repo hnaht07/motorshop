@@ -11,7 +11,8 @@ $(document).ready(function(){
                 complete:function(response){
                      $("#show_detail").removeClass("not-vi");
                     var text = JSON.parse(response.responseText);
-                    for (let item of text){
+                    if(text.length > 0){
+                        for (let item of text){
                         $('#product-weight').val(item.info_Weight);
                         $('#product-long').val(item.info_Long);
                         $('#product-wide').val(item.info_Wide);
@@ -33,7 +34,35 @@ $(document).ready(function(){
                         $('#product-Xylanh').val(item.info_volCylind);
                         $('#product-Piston').val(item.info_DiameterxPistonStroke);
                         $('#product-Ratio').val(item.info_CompRatio);
+                        $('#btnSave').text("Sửa Thông Tin");
+                        $('#iptSave').val("Sửa");
                     }
+                    }else{
+                        $('#product-weight').val(null);
+                        $('#product-long').val(null);
+                        $('#product-wide').val(null);
+                        $('#product-high').val(null);
+                        $('#product-saddle').val(null);
+                        $('#product-clean').val(null);
+                        $('#product-tank').val(null);
+                        $('#product-frtWheel').val(null);
+                        $('#product-bckWheel').val(null);
+                        $('#product-frtFork').val(null);
+                        $('#product-bckFork').val(null);
+                        $('#product-Engine').val(null);
+                        $('#product-maxWatt').val(null);
+                        $('#product-Oil').val(null);
+                        $('#product-Fuel').val(null);
+                        $('#product-Gear').val(null);
+                        $('#product-Start').val(null);
+                        $('#product-maxMoment').val(null);
+                        $('#product-Xylanh').val(null);
+                        $('#product-Piston').val(null);
+                        $('#product-Ratio').val(null);
+                        $('#btnSave').text("Lưu Thông Tin");
+                        $('#iptSave').val("Lưu");
+                    }
+                    
                     
                 }
             });

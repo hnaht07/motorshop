@@ -107,8 +107,8 @@ if (isset($msg)) {
     <script>
         Swal.fire(
             '<?php echo $msg; ?>',
-            '',
-            '<?php echo $status; ?>'
+            '<?php echo $status; ?>',
+            '<?php echo $status_code; ?>',
         )
     </script>
 <?php
@@ -139,7 +139,7 @@ if (isset($msg)) {
                             Swal.fire({
                                 title: 'Xóa Thành Công!',
                                 text: 'Sản Phẩm Đã Được Xóa Khỏi Database.',
-                                icon:  'success'
+                                icon: 'success'
                             }).then((result) => {
                                 location.reload();
                             })

@@ -26,6 +26,7 @@ class Dashboard extends Controller{
         $this->data['old'] = Session::flash('old');
         $this->data['msg'] = Session::flash('msg');
         $this->data['status'] = Session::flash('status');
+        $this->data['status_code'] = Session::flash('status_code');
         $this->data['img'] = Session::flash('img');
         $this->data['content'] = 'admin/insert';
         $this->data['page_title'] = 'Thêm Sản Phẩm';
@@ -62,7 +63,8 @@ class Dashboard extends Controller{
                 Session::flash('errors', $request->errors());
                 Session::flash('old', $request->getField());
                 Session::flash('msg', "Có Lỗi Xảy Ra!");
-                Session::flash('status','error');
+                Session::flash('status','Sản Phẩm Chưa Được Thêm Vào Database');
+                Session::flash('status_code', 'error');
             }else{
                 
                 $dataInsert = [];
@@ -79,7 +81,6 @@ class Dashboard extends Controller{
                 }
                 $dataInsert['product_Status'] = 0;
                 if ($_FILES['product-img']['name'] != '') {
-
                     $upload_dir = SITE_ROOT . "/public/assets/admin/uploads/";
                     $upload_file = $upload_dir . basename($_FILES['product-img']['name']);
                     $target_dir = "/public/assets/admin/uploads/";
@@ -92,7 +93,8 @@ class Dashboard extends Controller{
                 $dataInsert['company_Id'] = $_POST['compSelect'];
                 $this->admin->insert($dataInsert, 'tbl_product');
                 Session::flash('msg', "Thêm Thành Công!");
-                Session::flash('status', 'success');
+                Session::flash('status', 'Sản Phẩm Đã Được Thêm Vào Database');
+                Session::flash('status_code', 'success');
             }
             
         }
@@ -180,17 +182,96 @@ class Dashboard extends Controller{
     public function info_action(){
         if(isset($_POST['query'])){
             $baseId = $_POST['query'];
+            Session::flash('baseid',$baseId);
             $data = $this->admin->getById($baseId, 'tbl_product_info', 'product_Id');
+            if($data == []){
+                Session::flash('action','insert');
+            }else{
+                Session::flash('action','update');
+                Session::flash('info_Id', $data[0]['info_Id']);
+            }
             echo json_encode($data);
         }else{
             echo "data has not been send";
         }
+    }
+    public function info_update(){
+        $dataInfo = [];
+        $action = Session::flash('action');
+        $request = new Request();
+        if($request->isPost()){
+            $baseId = Session::flash('baseid');  
+            if($action == 'insert'){
+                $dataInfo['info_Id'] = '';
+                $dataInfo['product_Id'] = $baseId;
+                $dataInfo['info_Weight'] = $_POST['product-weight'];
+                $dataInfo['info_Long'] = $_POST['product-long'];
+                $dataInfo['info_High'] = $_POST['product-high'];
+                $dataInfo['info_Wide'] = $_POST['product-wide'];
+                $dataInfo['info_Saddle'] = $_POST['product-saddle'];
+                $dataInfo['info_Clean'] = $_POST['product-clean'];
+                $dataInfo['info_Tank'] = $_POST['product-tank'];
+                $dataInfo['info_frtWheel'] = $_POST['product-frtWheel'];
+                $dataInfo['info_bckWheel'] = $_POST['product-bckWheel'];
+                $dataInfo['info_frtFork'] = $_POST['product-frtFork'];
+                $dataInfo['info_bckFork'] = $_POST['product-bckFork'];
+                $dataInfo['info_Engine'] = $_POST['product-Engine'];
+                $dataInfo['info_maxWatt'] = $_POST['product-maxWatt'];
+                $dataInfo['info_Oil'] = $_POST['product-Oil'];
+                $dataInfo['info_Fuel'] = $_POST['product-Fuel'];
+                $dataInfo['info_Gear'] = $_POST['product-Gear'];
+                $dataInfo['info_Starting'] = $_POST['product-Start'];
+                $dataInfo['info_maxMoment'] = $_POST['product-maxMoment'];
+                $dataInfo['info_volCylind'] = $_POST['product-Xylanh'];
+                $dataInfo['info_DiameterxPistonStroke'] = $_POST['product-Piston'];
+                $dataInfo['info_CompRatio'] = $_POST['product-Ratio'];
+                $this->admin->insert($dataInfo, 'tbl_product_info');
+                Session::flash('msg', "Thêm Thành Công!");
+                Session::flash('status', 'Thông Tin Đã Được Thêm Vào Database');
+                Session::flash('status_code', 'success');
+            }elseif($action == 'update'){
+                $id_update = Session::flash('info_Id');
+                $dataInfo['product_Id'] = $baseId;
+                $dataInfo['info_Weight'] = $_POST['product-weight'];
+                $dataInfo['info_Long'] = $_POST['product-long'];
+                $dataInfo['info_High'] = $_POST['product-high'];
+                $dataInfo['info_Wide'] = $_POST['product-wide'];
+                $dataInfo['info_Saddle'] = $_POST['product-saddle'];
+                $dataInfo['info_Clean'] = $_POST['product-clean'];
+                $dataInfo['info_Tank'] = $_POST['product-tank'];
+                $dataInfo['info_frtWheel'] = $_POST['product-frtWheel'];
+                $dataInfo['info_bckWheel'] = $_POST['product-bckWheel'];
+                $dataInfo['info_frtFork'] = $_POST['product-frtFork'];
+                $dataInfo['info_bckFork'] = $_POST['product-bckFork'];
+                $dataInfo['info_Engine'] = $_POST['product-Engine'];
+                $dataInfo['info_maxWatt'] = $_POST['product-maxWatt'];
+                $dataInfo['info_Oil'] = $_POST['product-Oil'];
+                $dataInfo['info_Fuel'] = $_POST['product-Fuel'];
+                $dataInfo['info_Gear'] = $_POST['product-Gear'];
+                $dataInfo['info_Starting'] = $_POST['product-Start'];
+                $dataInfo['info_maxMoment'] = $_POST['product-maxMoment'];
+                $dataInfo['info_volCylind'] = $_POST['product-Xylanh'];
+                $dataInfo['info_DiameterxPistonStroke'] = $_POST['product-Piston'];
+                $dataInfo['info_CompRatio'] = $_POST['product-Ratio'];
+                $this->admin->update($dataInfo, $id_update, 'tbl_product_info','info_Id');
+                Session::flash('msg', "Sửa Thành Công!");
+                Session::flash('status', 'Thông Tin Đã Được Sửa');
+                Session::flash('status_code', 'success');
+            }
+            
+        }
+        $response = new Response();
+        $response->redirect('thong-tin');
+
     }
     public function info_product() {
         $dataList = $this->admin->getListAll('tbl_product');
         $this->data['content'] = 'admin/info';
         $this->data['sub_content'] = $dataList;
         $this->data['page_active'] = 'info';
+        $this->data['msg'] = Session::flash('msg');
+        $this->data['status'] = Session::flash('status');
+        $this->data['status_code'] = Session::flash('status_code');
         $this->render('layouts/admin_layout', $this->data);
     }
     public function render_update()
@@ -228,7 +309,7 @@ class Dashboard extends Controller{
             }
             $dataUpdate['company_Id'] = $_POST['nameHang'];
         }
-        $this->admin->update($dataUpdate, $idUpdate, 'tbl_product');
+        $this->admin->update($dataUpdate, $idUpdate, 'tbl_product','product_Id');
         $response = new Response();
         $response->redirect('product/list_product');
     }
@@ -238,10 +319,10 @@ class Dashboard extends Controller{
     {
         if(isset($_POST['id'])){
             $id = $_POST['id'];
-            $this->admin->delete($id, 'tbl_product');
+            $this->admin->delete($id, 'tbl_product','product_Id');
+            $this->admin->delete($id,'tbl_product_img','product_Id');
+            $this->admin->delete($id,'tbl_product_info','product_Id');
         }
-        
-        
     }
 }
 ?>
