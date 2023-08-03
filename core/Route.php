@@ -4,7 +4,6 @@ class Route{
     function handleRoute($url){
         global $routes;
         unset($routes['default_controller']);
-            
         $url = trim($url, '/');
         if(empty($url)){
             $url = '/';

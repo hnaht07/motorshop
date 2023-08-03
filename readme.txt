@@ -43,3 +43,4 @@
     color: #666666;
     text-align: left;
     margin: 0; }
+    /.+-(\d+)

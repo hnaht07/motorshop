@@ -20,7 +20,7 @@ function preview() {
         let reader = new FileReader();
         let figure = document.createElement("figure");
         let figCap = document.createElement("figcaption");
-        figCap.innerText = i.name;
+        figCap.innerText = "";
         figure.appendChild(figCap);
         reader.onload=()=>{
             let img = document.createElement("img");

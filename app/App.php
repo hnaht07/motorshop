@@ -63,7 +63,6 @@ class App{
                     unset($urlArray[$key - 1]);
                 }
                 if (file_exists('app/controllers/' . ($fileCheck) . '.php')) {
-                    
                     $urlCheck = $fileCheck;
                     break;
                 }

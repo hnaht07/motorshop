@@ -21,7 +21,7 @@
                         <tr>
                             <td><input type="hidden" class="delete_id" value="<?php echo $value['product_Id'] ?>"><?php echo $value['product_Id'] ?></td>
                             <td><?php echo $value['product_Name'] ?></td>
-                            <td><?php echo $value['product_Price'] ?></td>
+                            <td><?php echo number_format($value['product_Price'], 0, ',', '.') ?>đ</td>
                             <td><?php echo $value['company_Name'] ?></td>
                             <td>
                                 <?php if ($value['product_Status']) {
@@ -35,7 +35,7 @@
                                 }
                                 ?>
                             </td>
-                            <td><button><a href="#"><i class="fa fa-pencil btn"></i></a></button><button class="delete_product"><i class="fa fa-trash-o btn"></i></button></td>
+                            <td><button><a href="<?php echo _WEB_ROOT ?>/chinh-sua/<?php echo $value['product_Id'] ?>"><i class="fa fa-pencil btn"></i></a></button><button class="delete_product"><i class="fa fa-trash-o btn"></i></button></td>
                         </tr>
                     <?php
                     }

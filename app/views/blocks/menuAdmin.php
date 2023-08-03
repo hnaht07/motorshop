@@ -33,8 +33,8 @@
                                 <div class="myaccount-tab-menu nav">
                                     <a href="<?php echo _WEB_ROOT ?>/quan-ly" <?php echo ($active == 'index') ? 'class="active"' : false; ?>><i class="fa fa-dashboard"></i>
                                         Dashboard</a>
-                                    <a href="<?php echo _WEB_ROOT ?>/them" <?php echo ($active == 'add') ? 'class="active"' : false; ?>><i class="fa fa-plus"></i>Thêm Sản Phẩm</a>
-                                    <a href="<?php echo _WEB_ROOT ?>/thong-tin/" <?php echo ($active == 'info') ? 'class="active"' : false; ?>><i class="fa fa-plus"></i>Thông Tin Chi Tiết</a>
+                                    <a href="<?php echo _WEB_ROOT ?>/them" <?php echo ($active == 'add') ? 'class="active"' : false; ?>><i class="fa fa-plus"></i><?php echo ($active == 'add') ? $page_title : 'Thêm Sản Phẩm'; ?></a>
+                                    <a href="<?php echo _WEB_ROOT ?>/thong-tin" <?php echo ($active == 'info') ? 'class="active"' : false; ?>><i class="fa fa-plus"></i>Thông Tin Chi Tiết</a>
                                     <a href="#"><i class="fa fa-sign-out"></i> Logout</a>
                                 </div>
                             </div>

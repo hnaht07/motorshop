@@ -15,5 +15,5 @@ $routes['tin-tuc/(.+)'] = 'news/detail_news/$1';
 $routes['quan-ly'] = 'admin/dashboard';
 $routes['them'] = 'admin/dashboard/insert';
 $routes['thong-tin'] = 'admin/dashboard/info_product';
-$routes['cap-nhap/.+-(\d+)'] = 'admin/dashboard/update/$1';
+$routes['chinh-sua'] = 'admin/dashboard/update';
 ?>

@@ -120,8 +120,8 @@ if (isset($msg)) {
             e.preventDefault();
             var delete_id = $(this).closest("tr").find('.delete_id').val();
             Swal.fire({
-                title: 'Bạn Muốn Xóa?',
-                text: "Sẽ Không Thể Lấy Lại Được Data Của Sản Phẩm Này!",
+                title: 'Bạn Muốn Xóa Sản Phẩm Này?',
+                text: "Tất cả những hình ảnh và thông tin liên quan sẽ bị xóa!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
