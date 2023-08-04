@@ -45,7 +45,6 @@
                 }else{
                     $sql = "UPDATE $table SET $updateStr";
                 }
-
                 $status = $this->query($sql);
 
                 if($status){

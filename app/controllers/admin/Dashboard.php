@@ -22,6 +22,7 @@ class Dashboard extends Controller{
 
     public function insert()
     {
+        $this->data['action'] = 'insert';
         $this->data['errors'] = Session::flash('errors');
         $this->data['old'] = Session::flash('old');
         $this->data['msg'] = Session::flash('msg');
@@ -39,6 +40,7 @@ class Dashboard extends Controller{
     }
     public function update($id)
     {
+        $this->data['action'] = 'update';
         $this->data['errors'] = Session::flash('errors');
         $this->data['old'] = Session::flash('old');
         $this->data['msg'] = Session::flash('msg');
@@ -46,11 +48,14 @@ class Dashboard extends Controller{
         $this->data['status_code'] = Session::flash('status_code');
         $this->data['content'] = 'admin/insert';
         $dataProduct = $this->admin->getById($id, 'tbl_product', 'product_Id');
+        Session::flash('productId', $dataProduct[0]['product_Id']);
         $this->data['sub_content'] = $dataProduct;
         $this->data['page_title'] = 'Chỉnh Sửa Sản Phẩm';
         $this->data['page_active'] = 'add';
         $dataCompany = $this->admin->getListAll('tbl_company');
+        $dataImg = $this->admin->getById($id,'tbl_product_img','product_Id');
         $this->data['company'] = $dataCompany;
+        $this->data['product_img'] = $dataImg;
         //Render views
         $this->render('layouts/admin_layout', $this->data);
     }
@@ -80,10 +85,12 @@ class Dashboard extends Controller{
             if (!$validate) {
                 $old_img = $_FILES['product-img']['name'];
                 $old_imgs = [];
-                for ($i = 0; $i < count($_FILES['product-imgs']['name']); $i++) {
-                    $old_imgs[$i] = $_FILES['product-imgs']['name'][$i];
+                if(isset($_FILES['product-imgs'])) {
+                    for ($i = 0; $i < count($_FILES['product-imgs']['name']); $i++) {
+                        $old_imgs[$i] = $_FILES['product-imgs']['name'][$i];
+                    }
+                    Session::flash('old_imgs', $old_imgs);
                 }
-                Session::flash('old_imgs', $old_imgs);
                 Session::flash('errors', $request->errors());
                 Session::flash('old', $request->getField());
                 Session::flash('old_img',$old_img);
@@ -91,31 +98,31 @@ class Dashboard extends Controller{
                 Session::flash('status','Sản Phẩm Chưa Được Thêm Vào Database');
                 Session::flash('status_code', 'error');
             }else{
-                $dataInsert = [];
+                $dataUpdate = [];
                 $dataImg = [];
                 //render insert product
-                $dataInsert['product_Id'] = '';
-                $dataInsert['product_Name'] = $_POST['product_name'];
-                $dataInsert['product_Desc'] = $_POST['product_desc'];
-                $dataInsert['product_Price'] = $_POST['product_price'];
+                $dataUpdate['product_Id'] = '';
+                $dataUpdate['product_Name'] = $_POST['product_name'];
+                $dataUpdate['product_Desc'] = $_POST['product_desc'];
+                $dataUpdate['product_Price'] = $_POST['product_price'];
                 if ($_POST['product_downprice'] != '') {
-                    $dataInsert['product_downPrice'] = $_POST['product_downprice'];
+                    $dataUpdate['product_downPrice'] = $_POST['product_downprice'];
                 } else {
-                    $dataInsert['product_downPrice'] = '0';
+                    $dataUpdate['product_downPrice'] = '0';
                 }
-                $dataInsert['product_Status'] = 0;
+                $dataUpdate['product_Status'] = 0;
                 if ($_FILES['product-img']['name'] != '') {
                     $upload_dir = SITE_ROOT . "/public/assets/admin/uploads/";
                     $upload_file = $upload_dir . basename($_FILES['product-img']['name']);
                     $target_dir = "/public/assets/admin/uploads/";
                     $target_img = $target_dir . basename($_FILES['product-img']['name']);
                     move_uploaded_file($_FILES['product-img']['tmp_name'], $upload_file);
-                    $dataInsert['product_Img'] = $target_img;
+                    $dataUpdate['product_Img'] = $target_img;
                 } else {
-                    $dataInsert['product_Img'] = 'không có hình mô tả';
+                    $dataUpdate['product_Img'] = 'không có hình mô tả';
                 }
-                $dataInsert['company_Id'] = $_POST['compSelect'];
-                $this->admin->insert($dataInsert, 'tbl_product');
+                $dataUpdate['company_Id'] = $_POST['compSelect'];
+                $this->admin->insert($dataUpdate, 'tbl_product');
                 $lastId = $this->admin->getLastId();
                 $dataImg['img_Id'] = '';
                 $dataImg['product_Id'] = $lastId;
@@ -140,6 +147,55 @@ class Dashboard extends Controller{
                 Session::flash('status_code', 'success');
             }
         }
+        $response = new Response();
+        $response->redirect('them');
+    }
+
+    public function render_update()
+    {
+        $update_id = Session::flash('productId');
+        $request = new Request();
+        if ($request->isPost()) {
+                $dataUpdate = [];
+                $dataImg = [];
+                //render update product
+                $dataUpdate['product_Name'] = $_POST['product_name'];
+                $dataUpdate['product_Desc'] = $_POST['product_desc'];
+                $dataUpdate['product_Price'] = $_POST['product_price'];
+                if ($_POST['product_downprice'] != '') {
+                    $dataUpdate['product_downPrice'] = $_POST['product_downprice'];
+                }
+                $dataUpdate['product_Status'] = $_POST['statusSelect'];
+                if ($_FILES['product-img']['name'] != '') {
+                    $upload_dir = SITE_ROOT . "/public/assets/admin/uploads/";
+                    $upload_file = $upload_dir . basename($_FILES['product-img']['name']);
+                    $target_dir = "/public/assets/admin/uploads/";
+                    $target_img = $target_dir . basename($_FILES['product-img']['name']);
+                    move_uploaded_file($_FILES['product-img']['tmp_name'], $upload_file);
+                    $dataUpdate['product_Img'] = $target_img;
+                }
+                if($_POST['compSelect'] != 0){
+                    $dataUpdate['company_Id'] = $_POST['compSelect'];
+                }
+                $this->admin->update($dataUpdate, $update_id, 'tbl_product', 'product_Id');
+                $dataImg['product_Id'] = $update_id;
+                if ($_FILES['product-imgs']['name'][0] != '') {
+                    foreach ($_FILES['product-imgs']['name'] as $key => $value) {
+                        //đưa hình vào file uploads
+                        $upload_dir = SITE_ROOT . "/public/assets/admin/uploads/";
+                        $upload_files = $upload_dir . basename($_FILES['product-imgs']['name'][$key]);
+                        //đưa hình vào database
+                        $target_dir = "/public/assets/admin/uploads/";
+                        $target_img = $target_dir . basename($_FILES['product-imgs']['name'][$key]);
+                        move_uploaded_file($_FILES['product-imgs']['tmp_name'][$key], $upload_files);
+                        $dataImg['img_Detail'] = $target_img;
+                        //$this->admin->insert($dataImg, 'tbl_product_img');
+                    }
+                }
+        }
+        Session::flash('msg', "Cập Nhập Sản Phẩm Thành Công!");
+        Session::flash('status', 'Sản Phẩm Đã Được Chỉnh Sửa');
+        Session::flash('status_code', 'success');
         $response = new Response();
         $response->redirect('them');
     }
@@ -259,44 +315,7 @@ class Dashboard extends Controller{
         $this->data['status_code'] = Session::flash('status_code');
         $this->render('layouts/admin_layout', $this->data);
     }
-    public function render_update()
-    {
-        $idUpdate = $_POST['idsp'];
-        $table = 'tbl_product';
-        $img = $this->admin->getById($idUpdate, $table);
-        $dataUpdate = [];
-        if ($_POST['submit']) {
-            $dataUpdate['product_Id'] =  $_POST['idsp'];
-            $dataUpdate['product_Name'] = $_POST['tensp'];
-            $dataUpdate['product_Price'] = $_POST['giasp'];
-            if ($_POST['giamgiasp'] != '') {
-                $dataUpdate['product_downPrice'] = $_POST['giamgiasp'];
-            } else {
-                $dataUpdate['product_downPrice'] = '0';
-            }
-            if ($_FILES['hinhsp']['name'] != '') {
 
-                $upload_dir = SITE_ROOT . "/public/assets/admin/uploads/";
-                $upload_file = $upload_dir . basename($_FILES['hinhsp']['name']);
-                $target_dir = "/public/assets/admin/uploads/";
-                $target_img = $target_dir . basename($_FILES['hinhsp']['name']);
-                if (move_uploaded_file($_FILES['hinhsp']['tmp_name'], $upload_file)) {
-                    echo "Update Hình OK.\n";
-                } else {
-                    echo "Update Hình failed";
-                }
-                $dataUpdate['product_Img'] = $target_img;
-            } else {
-                $dataUpdate['product_Img'] = $img['product_Img'];
-            }
-            $dataUpdate['company_Id'] = $_POST['nameHang'];
-        }
-        $this->admin->update($dataUpdate, $idUpdate, 'tbl_product','product_Id');
-        $response = new Response();
-        $response->redirect('product/list_product');
-    }
-
-    
     public function delete_product()
     {
         if(isset($_POST['id'])){

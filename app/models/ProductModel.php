@@ -43,7 +43,7 @@ class ProductModel extends Model{
         $this->db->tableBuilder($table)->insertBuilder($data);
         return $this->db->lastInsertBuilder();
     }
-    public function update($data, $id , $table,$field)
+    public function update($data, $id ,$table,$field)
     {
         $this->db->tableBuilder($table)->whereBuilder($field, '=', $id)->updateBuilder($data);
     }

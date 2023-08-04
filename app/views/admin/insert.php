@@ -5,7 +5,7 @@
     <div class="myaccount-content">
         <h3>Thêm Sản Phẩm</h3>
         <div class="account-details-form">
-            <form action="<?php echo _WEB_ROOT ?>/admin/dashboard/render_insert" method="post" enctype="multipart/form-data">
+            <form action="<?php echo _WEB_ROOT ?>/admin/dashboard/render_<?php echo $action ?>" method="post" enctype="multipart/form-data">
                 <div class="single-input-item">
                     <label for="product_name" class="required">Nhập Tên Sản Phẩm</label>
                     <input class="<?php echo (!empty($errors) && array_key_exists('product_name', $errors)) ? 'errors' : false ?>" type="text" id="product_name" name="product_name" placeholder="Nhập Tên Sản Phẩm" value="<?php echo (!empty($old)) ? $old['product_name'] : $dataShow[0]['product_Name'] ?>" />
@@ -13,7 +13,8 @@
                 </div>
                 <div class="single-input-item">
                     <label for="product_desc">Mô tả sản phẩm</label>
-                    <textarea class="<?php echo (!empty($errors) && array_key_exists('product_desc', $errors)) ? 'errors' : false ?>" id="product_desc" name="product_desc" cols="30" rows="10" placeholder="Mô tả sản phẩm" value="<?php echo (!empty($old)) ? $old['product_desc'] : $dataShow[0]['product_Desc'] ?>"></textarea>
+                    <textarea class="<?php echo (!empty($errors) && array_key_exists('product_desc', $errors)) ? 'errors' : false ?>" id="product_desc" name="product_desc" cols="30" rows="10" placeholder="Mô tả sản phẩm"><?php echo (!empty($old)) ? $old['product_desc'] : $dataShow[0]['product_Desc'] ?></textarea>
+
                     <span class="error" id="error_desc"><?php echo (!empty($errors) && array_key_exists('product_desc', $errors)) ? $errors['product_desc'] : false ?></span>
                 </div>
                 <div class="row">
@@ -40,7 +41,21 @@
                                 <i class="fa fa-upload"></i> &nbsp; Chọn Hình Ảnh
                             </label>
                             <span class="error"><?php echo (!empty($errors) && array_key_exists('product-img', $errors)) ? $errors['product-img'] : false ?></span>
-                            <img id="chooseImg" <?php echo (!empty($old_img)) ? 'src="' . _WEB_ROOT . '/public/assets/admin/images/' . $old_img . '"' : 'src="' . _WEB_ROOT . '/' . $dataShow[0]['product_Img'] . '"' ?>>
+                            <?php
+                            if (!empty($old_img)) {
+                            ?>
+                                <img src="<?php echo _WEB_ROOT ?>/public/assets/admin/images/<?php echo $old_img ?>" alt="" id="chooseImg">
+                            <?php
+                            } elseif ($dataShow[0]['product_Img'] != '') {
+                            ?>
+                                <img src="<?php echo _WEB_ROOT ?>/<?php echo $dataShow[0]['product_Img'] ?>" alt="" id="chooseImg">
+                            <?php
+                            } else {
+                            ?>
+                                <img id="chooseImg">
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -53,12 +68,19 @@
                             <p id="num-of-files">Chưa chọn hình ảnh</p>
                             <div id="images">
                                 <?php
-                                if (isset($old_imgs)) {
+                                if ($old_imgs[0] != '') {
                                     foreach ($old_imgs as $key => $value) {
-
                                 ?>
                                         <figure>
                                             <img src="<?php echo _WEB_ROOT ?>/public/assets/admin/images/<?php echo $old_imgs[$key] ?>" alt="hình ảnh chi tiết">
+                                        </figure>
+                                    <?php
+                                    }
+                                } elseif (!empty($productImg)) {
+                                    foreach ($productImg as $key => $value) {
+                                    ?>
+                                        <figure>
+                                            <img src="<?php echo _WEB_ROOT ?><?php echo $productImg[$key]['img_Detail'] ?>" alt="hình ảnh chi tiết">
                                         </figure>
                                 <?php
                                     }
@@ -88,7 +110,20 @@
                     <div class="col-lg-6">
                         <div class="single-input-item">
                             <label for="product_status">Trạng Thái Sản Phẩm</label>
-                            <input type="text" id="product_status" name="product_status" value="Còn Hàng" readonly />
+                            <?php
+                            if ($action == 'update') {
+                            ?>
+                                <select name="statusSelect" id="statusSelect">
+                                    <option value="0">Còn Hàng</option>
+                                    <option value="1">Hết Hàng</option>
+                                </select>
+                            <?php
+                            } else {
+                            ?>
+                                <input type="text" id="product_status" name="product_status" value="Còn Hàng" readonly />
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
