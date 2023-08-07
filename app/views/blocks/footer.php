@@ -148,6 +148,71 @@ if (isset($msg)) {
                 }
             })
         });
+        $('.delete_img').click(function(e) {
+            e.preventDefault();
+            var delete_id = $(this).parent("figure").find('.img_id').val();
+            Swal.fire({
+                title: 'Bạn Muốn Xóa Hình Ảnh Này?',
+                text: "Hình Ảnh Sẽ Bị Xóa Khỏi Database!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "http://localhost:81/motorshop/admin/dashboard/delete_img",
+                        method: "POST",
+                        data: {
+                            id: delete_id
+                        },
+                        success: function(response) {
+                            Swal.fire({
+                                title: 'Xóa Thành Công!',
+                                text: 'Hình Ảnh Đã Được Xóa Khỏi Database.',
+                                icon: 'success'
+                            }).then((result) => {
+                                location.reload();
+                            })
+                        }
+                    });
+                }
+            })
+        });
+        $('.delete_news').click(function(e) {
+            e.preventDefault();
+            var delete_id = $(this).closest("tr").find('.delete_id').val();
+            Swal.fire({
+                title: 'Bạn Muốn Xóa Tin Tức Này?',
+                text: "Bản Tin Này Sẽ Bị Xóa Khỏi Database!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "http://localhost:81/motorshop/admin/dashboard/delete_news",
+                        method: "POST",
+                        data: {
+                            id: delete_id
+                        },
+                        success: function(response) {
+                            Swal.fire({
+                                title: 'Xóa Thành Công!',
+                                text: 'Bản Tin Đã Được Xóa Khỏi Database.',
+                                icon: 'success'
+                            }).then((result) => {
+                                location.reload();
+                            })
+                        }
+                    });
+                }
+            })
+        });
     });
 </script>
+
 </body>

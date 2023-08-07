@@ -16,4 +16,6 @@ $routes['quan-ly'] = 'admin/dashboard';
 $routes['them'] = 'admin/dashboard/insert';
 $routes['thong-tin'] = 'admin/dashboard/info_product';
 $routes['chinh-sua'] = 'admin/dashboard/update';
+$routes['ban-tin'] = 'admin/dashboard/news';
+$routes['them-ban-tin'] = 'admin/dashboard/news_insert'
 ?>

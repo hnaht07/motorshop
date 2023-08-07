@@ -80,8 +80,11 @@
                                     foreach ($productImg as $key => $value) {
                                     ?>
                                         <figure>
-                                            <img src="<?php echo _WEB_ROOT ?><?php echo $productImg[$key]['img_Detail'] ?>" alt="hình ảnh chi tiết">
+                                            <input class="img_id" type="hidden" value="<?php echo $value['img_Id']; ?>">
+                                            <img src="<?php echo _WEB_ROOT ?><?php echo $value['img_Detail'] ?>" alt="hình ảnh chi tiết">
+                                            <button class="delete_img"><i class="fa fa-trash-o btn"></i></button>
                                         </figure>
+
                                 <?php
                                     }
                                 }
@@ -128,7 +131,7 @@
                     </div>
                 </div>
                 <div class="single-input-item">
-                    <button type="submit" class="btn">Thêm </button>
+                    <button type="submit" class="btn"><?php echo ($action == 'update') ? 'Sửa Sản Phẩm' : 'Thêm Sản Phẩm' ?></button>
                 </div>
             </form>
         </div>

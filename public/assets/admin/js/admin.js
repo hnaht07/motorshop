@@ -82,4 +82,12 @@ $(document).ready(function(){
         $(this).removeClass('errors');
         $('#error_desc').addClass('not-vi');
     });
+    $('#news_Title').keyup(function(){
+        $(this).removeClass('errors');
+        $('#error_title').addClass('not-vi');
+    });
+    $('#news_Block').keyup(function(){
+        $(this).removeClass('errors');
+        $('#error_block').addClass('not-vi');
+    });
 });

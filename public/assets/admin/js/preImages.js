@@ -1,6 +1,5 @@
 let upload = document.getElementById("product-img");
 let chosen = document.getElementById("chooseImg");
-
 upload.onchange = () =>{
     let reader = new FileReader();
     reader.readAsDataURL(upload.files[0]);
@@ -8,6 +7,8 @@ upload.onchange = () =>{
         chosen.setAttribute("src", reader.result);
     }
 }
+
+
 
 let fileInput = document.getElementById("product-imgs");
 let imageContainer = document.getElementById("images");

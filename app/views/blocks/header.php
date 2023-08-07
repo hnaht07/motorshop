@@ -21,7 +21,8 @@
     <script src="<?php echo _WEB_ROOT ?>/public/assets/clients/js/modernizr-2.8.3.min.js"></script>
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-    
+    <!-- ckeditor -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 </head>
 
 <body>

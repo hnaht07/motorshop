@@ -7,7 +7,7 @@ class Dashboard extends Controller{
     {
         $this->admin = $this->model('ProductModel');
     }
-    public function index()
+    public function index()//layout trang chủ admin
     {
         $dataList = $this->admin->getWith('tbl_company cp', 'cp.company_Id', 'tbl_product pr', 'pr.company_Id');
         $this->data['content'] = 'admin/index';
@@ -20,7 +20,7 @@ class Dashboard extends Controller{
         $this->render('layouts/admin_layout', $this->data);
     }
 
-    public function insert()
+    public function insert()//layout trang thêm sản phẩm
     {
         $this->data['action'] = 'insert';
         $this->data['errors'] = Session::flash('errors');
@@ -38,7 +38,7 @@ class Dashboard extends Controller{
         //Render views
         $this->render('layouts/admin_layout', $this->data);
     }
-    public function update($id)
+    public function update($id)//layout trang update
     {
         $this->data['action'] = 'update';
         $this->data['errors'] = Session::flash('errors');
@@ -59,8 +59,85 @@ class Dashboard extends Controller{
         //Render views
         $this->render('layouts/admin_layout', $this->data);
     }
+    public function news(){
+        $dataList = $this->admin->getListAll('tbl_news');
+        $this->data['content'] = 'admin/news_list';
+        $this->data['page_title'] = 'Danh sách bản tin';
+        $this->data['sub_content'] = $dataList;
+        $this->data['page_active'] = 'list';
+        //Render views
+        $this->render('layouts/admin_layout', $this->data);
+    }
 
-    public function render_insert()
+    public function news_insert(){ //layout trang thêm tin tức
+        $this->data['content'] = 'admin/news';
+        $this->data['page_title'] = 'Thêm Tin Tức';
+        $this->data['page_active'] = 'news';
+        $this->data['errors'] = Session::flash('errors');
+        $this->data['old'] = Session::flash('old');
+        $this->data['msg'] = Session::flash('msg');
+        $this->data['status'] = Session::flash('status');
+        $this->data['status_code'] = Session::flash('status_code');
+        $this->data['old_img'] = Session::flash('old_img');
+        $this->render('layouts/admin_layout', $this->data);
+    }
+
+    public function render_news(){//xử lý thêm tin tức
+        $dataInsert = [];
+        $request = new Request();
+        if($request->isPost()){
+            $request->rules([
+                'news_Title' => 'required',
+                'news_Block' => 'required|max:1000',
+                'news_imgTitle' => 'callback_check_newsImg',
+            ]);
+            $request->message([
+                'news_Title.required' => 'Vui Lòng Nhập Trường Này!',
+                'news_Block.required' => 'Vui Lòng Nhập Trường Này!',
+                'news_Block.max' => 'Vui Lòng Nhập Dưới 1000 Ký Tự!',
+                'news_imgTitle.callback_check_newsImg' => 'Vui Lòng Chọn Hình Ảnh!',
+            ]);
+            $validate = $request->validate();
+            if (!$validate) {
+                $old_img = $_FILES['news_imgTitle']['name'];
+                Session::flash('errors', $request->errors());
+                Session::flash('old', $request->getField());
+                Session::flash('old_img', $old_img);
+                Session::flash('msg', "Có Lỗi Xảy Ra!");
+                Session::flash('status', 'Tin Tức Chưa Được Thêm Vào Database');
+                Session::flash('status_code', 'error');
+            }else{
+                $dataInsert['news_Id'] = '';
+                $dataInsert['news_Title'] = $_POST['news_Title'];
+                if ($_FILES['news_imgTitle']['name'] != '') {
+                    $upload_dir = SITE_ROOT . "/public/assets/admin/uploads/";
+                    $upload_file = $upload_dir . basename($_FILES['news_imgTitle']['name']);
+                    $target_dir = "/public/assets/admin/uploads/";
+                    $target_img = $target_dir . basename($_FILES['news_imgTitle']['name']);
+                    move_uploaded_file($_FILES['news_imgTitle']['tmp_name'], $upload_file);
+                    $dataInsert['news_mainImg'] = $target_img;
+                } else {
+                    $dataInsert['news_mainImg'] = 'không có hình mô tả';
+                }
+                $dataInsert['news_BlockContent'] = $_POST['news_Block'];
+                $dataInsert['news_Content'] = $_POST['NewsContent'];
+                $dataInsert['news_Date'] = date("Y-m-d");
+                $dataInsert['news_upName'] = 'admin';
+                //insert tin tức
+                $this->admin->insert($dataInsert,'tbl_news');
+                Session::flash(
+                    'msg',
+                    "Thêm Thành Công!"
+                );
+                Session::flash('status', 'Bản Tin Đã Được Thêm Vào Database');
+                Session::flash('status_code', 'success');
+            }
+        }
+        $response = new Response();
+        $response->redirect('them-ban-tin');
+    }
+
+    public function render_insert()//xử lý thêm sản phẩm
     {
         
         //VALIDATE FORM
@@ -151,7 +228,7 @@ class Dashboard extends Controller{
         $response->redirect('them');
     }
 
-    public function render_update()
+    public function render_update()//xử lý update 
     {
         $update_id = Session::flash('productId');
         $request = new Request();
@@ -189,7 +266,7 @@ class Dashboard extends Controller{
                         $target_img = $target_dir . basename($_FILES['product-imgs']['name'][$key]);
                         move_uploaded_file($_FILES['product-imgs']['tmp_name'][$key], $upload_files);
                         $dataImg['img_Detail'] = $target_img;
-                        //$this->admin->insert($dataImg, 'tbl_product_img');
+                        $this->admin->insert($dataImg, 'tbl_product_img');
                     }
                 }
         }
@@ -200,7 +277,7 @@ class Dashboard extends Controller{
         $response->redirect('them');
     }
 
-    public function check_comp($compSelect){
+    public function check_comp($compSelect){//function dùng để callback xử lý validate chọn hãng xe
         if(!empty($compSelect) || $compSelect > 0){
             return true;
         }else{
@@ -208,19 +285,26 @@ class Dashboard extends Controller{
         }
         
     }
-    public function check_img(){
+    public function check_img(){//check validate images
         $img = $_FILES['product-img']['name'];
         if($img != ''){
             return true;
         } return false;
     }
-    public function check_price($product_price){
+    public function check_newsImg(){ //check validate images
+        $img = $_FILES['news_imgTitle']['name'];
+        if ($img != '') {
+            return true;
+        }
+        return false;
+    }
+    public function check_price($product_price){//check validate giá tiền
         if(is_numeric($product_price)){
             return true;
         } return false;
     }
     
-    public function info_action(){
+    public function info_action(){//xử lý ajax thông tin chi tiết
         if(isset($_POST['query'])){
             $baseId = $_POST['query'];
             Session::flash('baseid',$baseId);
@@ -236,7 +320,7 @@ class Dashboard extends Controller{
             echo "data has not been send";
         }
     }
-    public function info_update(){
+    public function info_update(){//xử lý thông tin chi tiết
         $dataInfo = [];
         $action = Session::flash('action');
         $request = new Request();
@@ -305,7 +389,7 @@ class Dashboard extends Controller{
         $response->redirect('thong-tin');
 
     }
-    public function info_product() {
+    public function info_product() {//layout trang thông tin chi tiết
         $dataList = $this->admin->getListAll('tbl_product');
         $this->data['content'] = 'admin/info';
         $this->data['sub_content'] = $dataList;
@@ -316,13 +400,27 @@ class Dashboard extends Controller{
         $this->render('layouts/admin_layout', $this->data);
     }
 
-    public function delete_product()
+    public function delete_product()//xử lý xóa sản phẩm
     {
         if(isset($_POST['id'])){
             $id = $_POST['id'];
             $this->admin->delete($id, 'tbl_product','product_Id');
             $this->admin->delete($id,'tbl_product_img','product_Id');
             $this->admin->delete($id,'tbl_product_info','product_Id');
+        }
+    }
+    public function delete_img()//xử lý xóa hình ảnh chi tiết
+    {
+        if (isset($_POST['id'])) {
+            $id = $_POST['id'];
+            $this->admin->delete($id, 'tbl_product_img', 'img_Id');
+        }
+    }
+    public function delete_news() //xử lý xóa hình ảnh chi tiết
+    {
+        if (isset($_POST['id'])) {
+            $id = $_POST['id'];
+            $this->admin->delete($id, 'tbl_news', 'news_Id');
         }
     }
 }
