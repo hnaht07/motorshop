@@ -34,6 +34,7 @@
                             <div class="col-xl-4 col-md-6">
                                 <!-- blog single item start -->
                                 <div class="blog-post-item mb-30">
+                                    <?php $id = $value['news_Id']; ?>
                                     <div class="blog-thumb">
                                         <a href="<?php echo _WEB_ROOT ?>/tin-tuc/<?php echo toSlug($value['news_Title']); ?>">
                                             <img src="<?php echo _WEB_ROOT ?><?php echo $value['news_mainImg'] ?>" alt="blog thumb">
@@ -42,7 +43,7 @@
                                     <div class="blog-content">
                                         <h5 class="blog-title">
                                             <a href="<?php echo _WEB_ROOT ?>/tin-tuc/<?php echo toSlug($value['news_Title']); ?>">
-                                                <?php echo $value['news_Title'] ?>
+                                                <?php echo $value['news_Title'] ?>/<?php echo $id?>
                                             </a>
                                         </h5>
                                         <ul class="blog-meta">
