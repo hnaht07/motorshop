@@ -38,9 +38,13 @@
                             </div>
                             <div class="sidebar-body">
                                 <ul class="color-list">
-                                    <li><a href="san-pham?cate=1">Honda <span>(<?php echo $hond ?>)</span> </a></li>
-                                    <li><a href="san-pham?cate=2">Suzuki <span>(<?php echo $yam ?>)</span> </a></li>
-                                    <li><a href="san-pham?cate=3">Yamaha <span>(<?php echo $suzu ?>)</span> </a></li>
+                                    <?php
+                                    foreach ($compList as $key => $value) {
+                                    ?>
+                                        <li><a href="san-pham?cate=<?php echo $value['company_Id'] ?>"><?php echo $value['company_Name'] ?> <span>(<?php  ?>)</span> </a></li>
+                                    <?php
+                                    }
+                                    ?>
                                 </ul>
                             </div>
                         </div>
@@ -79,8 +83,6 @@
                     <div class="shop-product-wrap grid-view row mbn-50">
                         <?php
                         foreach ($dataShow as $key => $value) {
-                            $name = $value['product_Name'];
-                            $name = str_replace(' ', '-', $name);
                         ?>
                             <div class="col-lg-4 col-sm-6">
 
@@ -89,13 +91,13 @@
                                 <div class="product-item mb-53">
 
                                     <div class="product-thumb">
-                                        <a href="san-pham/<?php echo $name ?>">
+                                        <a href="san-pham/<?php echo $value['product_Slug'] ?>">
                                             <img src="<?php echo _WEB_ROOT ?><?php echo $value['product_Img'] ?>" alt="">
                                         </a>
                                     </div>
                                     <div class="product-content">
                                         <h5 class="product-name">
-                                            <a href="san-pham/<?php echo $name ?>"><?php echo $value['product_Name'] ?></a>
+                                            <a href="san-pham/<?php echo $value['product_Slug'] ?>"><?php echo $value['product_Name'] ?></a>
                                         </h5>
                                         <div class="price-box">
                                             <?php

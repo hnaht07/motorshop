@@ -29,21 +29,19 @@
                     <div class="row">
                         <?php
                         foreach ($dataShow as $key => $value) {
-
                         ?>
                             <div class="col-xl-4 col-md-6">
                                 <!-- blog single item start -->
                                 <div class="blog-post-item mb-30">
-                                    <?php $id = $value['news_Id']; ?>
                                     <div class="blog-thumb">
-                                        <a href="<?php echo _WEB_ROOT ?>/tin-tuc/<?php echo toSlug($value['news_Title']); ?>">
+                                        <a href="<?php echo _WEB_ROOT ?>/tin-tuc/<?php echo $value['news_Slug']; ?>">
                                             <img src="<?php echo _WEB_ROOT ?><?php echo $value['news_mainImg'] ?>" alt="blog thumb">
                                         </a>
                                     </div>
                                     <div class="blog-content">
                                         <h5 class="blog-title">
-                                            <a href="<?php echo _WEB_ROOT ?>/tin-tuc/<?php echo toSlug($value['news_Title']); ?>">
-                                                <?php echo $value['news_Title'] ?>/<?php echo $id?>
+                                            <a href="<?php echo _WEB_ROOT ?>/tin-tuc/<?php echo $value['news_Slug']; ?>">
+                                                <?php echo $value['news_Title'] ?>
                                             </a>
                                         </h5>
                                         <ul class="blog-meta">
@@ -54,7 +52,7 @@
                                                 ?>
                                             </li>
                                         </ul>
-                                        <a href="<?php echo _WEB_ROOT ?>/tin-tuc/<?php echo toSlug($value['news_Title']); ?>" class="read-more">Read More...</a>
+                                        <a href="<?php echo _WEB_ROOT ?>/tin-tuc/<?php echo $value['news_Slug']; ?>" class="read-more">Read More...</a>
                                     </div>
                                 </div>
                                 <!-- blog single item start -->

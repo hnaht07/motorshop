@@ -38,3 +38,4 @@ class HomeModel extends Model
         $this->db->tableBuilder($table)->whereBuilder($table, '=', $id)->deleteBuilder();
     }
 } 
+?>

@@ -109,6 +109,7 @@ class Dashboard extends Controller{
             }else{
                 $dataInsert['news_Id'] = '';
                 $dataInsert['news_Title'] = $_POST['news_Title'];
+                $dataInsert['news_Slug'] = toSlug($_POST['news_Title']);
                 if ($_FILES['news_imgTitle']['name'] != '') {
                     $upload_dir = SITE_ROOT . "/public/assets/admin/uploads/";
                     $upload_file = $upload_dir . basename($_FILES['news_imgTitle']['name']);
@@ -180,6 +181,7 @@ class Dashboard extends Controller{
                 //render insert product
                 $dataUpdate['product_Id'] = '';
                 $dataUpdate['product_Name'] = $_POST['product_name'];
+                $dataUpdate['product_Slug'] = toSlug($_POST['product_name']);
                 $dataUpdate['product_Desc'] = $_POST['product_desc'];
                 $dataUpdate['product_Price'] = $_POST['product_price'];
                 if ($_POST['product_downprice'] != '') {
@@ -237,6 +239,7 @@ class Dashboard extends Controller{
                 $dataImg = [];
                 //render update product
                 $dataUpdate['product_Name'] = $_POST['product_name'];
+                $dataUpdate['product_Slug'] = toSlug($_POST['product_name']);
                 $dataUpdate['product_Desc'] = $_POST['product_desc'];
                 $dataUpdate['product_Price'] = $_POST['product_price'];
                 if ($_POST['product_downprice'] != '') {

@@ -58,3 +58,4 @@ class ProductModel extends Model{
         return $data;
     }
 }
+?>

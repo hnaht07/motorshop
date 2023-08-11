@@ -98,18 +98,16 @@
                         <!-- product single item start -->
                         <?php
                         foreach ($data['dataShow'] as $key => $value) {
-                            $name = $value['product_Name'];
-                            $name = str_replace(' ', '-', $name);
                         ?>
                             <div class="product-item mb-50">
                                 <div class="product-thumb">
-                                    <a href="san-pham/<?php echo $name ?>">
+                                    <a href="san-pham/<?php echo $value['product_Slug'] ?>">
                                         <img src="<?php echo _WEB_ROOT . $value['product_Img'] ?>" alt="">
                                     </a>
                                 </div>
                                 <div class="product-content">
                                     <h5 class="product-name">
-                                        <a href="san-pham/<?php echo $name ?>>"><?php echo $value['product_Name'] ?></a>
+                                        <a href="san-pham/<?php echo $value['product_Slug'] ?>"><?php echo $value['product_Name'] ?></a>
                                     </h5>
                                     <div class="price-box">
                                         <?php
@@ -168,13 +166,13 @@
                         ?>
                             <div class="blog-post-item">
                                 <div class="blog-thumb">
-                                    <a href="blog-details.html">
+                                    <a href="<?php echo _WEB_ROOT ?>/tin-tuc/<?php echo $value['news_Slug'] ?>">
                                         <img src="<?php echo _WEB_ROOT ?><?php echo $value['news_mainImg'] ?>" alt="blog thumb">
                                     </a>
                                 </div>
                                 <div class="blog-content">
                                     <h5 class="blog-title">
-                                        <a href="blog-details.html">
+                                        <a href="<?php echo _WEB_ROOT ?>/tin-tuc/<?php echo $value['news_Slug'] ?>">
                                             <?php echo $value['news_Title'] ?>
                                         </a>
                                     </h5>
@@ -182,7 +180,7 @@
                                         <li><span>By: </span><?php echo $value['news_upName'] ?>,</li>
                                         <li><span>On: </span><?php echo $value['news_Date'] ?></li>
                                     </ul>
-                                    <a href="blog-details.html" class="read-more">Read More...</a>
+                                    <a href="<?php echo _WEB_ROOT ?>/tin-tuc/<?php echo $value['news_Slug'] ?>" class="read-more">Read More...</a>
                                 </div>
                             </div>
                         <?php

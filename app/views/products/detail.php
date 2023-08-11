@@ -33,6 +33,9 @@
                         <div class="row">
                             <div class="col-lg-5">
                                 <div class="product-large-slider mb-20">
+                                    <div class="pro-large-img img-zoom">
+                                        <img src="<?php echo _WEB_ROOT . $dataShow[0]['product_Img'] ?>" alt="product thumb" />
+                                    </div>
                                     <?php
                                     foreach ($img as $key => $value) {
                                     ?>
@@ -44,6 +47,9 @@
                                     ?>
                                 </div>
                                 <div class="pro-nav slick-row-5">
+                                    <div class="pro-nav-thumb">
+                                        <img src="<?php echo _WEB_ROOT . $dataShow[0]['product_Img'] ?>" alt="product thumb" />
+                                    </div>
                                     <?php
                                     foreach ($img as $key => $value) {
                                     ?>

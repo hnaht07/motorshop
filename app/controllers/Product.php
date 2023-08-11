@@ -35,26 +35,23 @@ class Product extends Controller{
         $dataPage = $this->products->countAll('tbl_product');
         $dataPage = ceil($dataPage / 6);
         $this->data['numPage'] = $dataPage;
-        $numHond = $this->products->countList('tbl_product','company_Id',1);
-        $this->data['numHond'] = $numHond;
-        $numYam = $this->products->countList('tbl_product', 'company_Id', 2);
-        $this->data['numYam'] = $numYam;
-        $numSuzu = $this->products->countList('tbl_product', 'company_Id', 3);
-        $this->data['numSuzu'] = $numSuzu;
+        $CompList = $this->products->getListAll('tbl_company');
+        $this->data['compList'] = $CompList;
         //Render views
         $this->render('layouts/product_layout', $this->data);
             
     }
+    function countCompany($cate) {
+        $num = $this->products->countList('tbl_product','company_Id',$cate);
+        return $num;
+    }
     public function detail_product($name){
-        $name = str_replace('-', ' ', $name);
-        $getName = $this->products->getById("'$name'",'tbl_product','product_Name');
-        $id = $getName[0]['product_Id'];
-        $dataDetail = $this->products->getById($id, 'tbl_product', 'product_Id');
-        $dataImg = $this->products->getById($id, 'tbl_product_img', 'product_Id');
+        $dataDetail = $this->products->getById("'" . $name . "'", 'tbl_product', 'product_Slug');
+        $dataImg = $this->products->getById($dataDetail[0]['product_Id'], 'tbl_product_img', 'product_Id');
         $dataRel = $this->products->getById($dataDetail[0]['company_Id'], 'tbl_product', 'company_Id');
         $dataInfo = $this->products->getById($dataDetail[0]['product_Id'], 'tbl_product_info', 'product_Id');
         $this->data['content'] = 'products/detail';
-        $this->data['page_title'] = $name;
+        $this->data['page_title'] = $dataDetail[0]['product_Name'];
         $this->data['img'] = $dataImg;
         $this->data['sub_content'] = $dataDetail;
         $this->data['rel'] = $dataRel;
@@ -72,8 +69,7 @@ class Product extends Controller{
         }
         if($dataSearch != []){
             foreach ($dataSearch as $key => $value) {
-                $name = $value['product_Name'];
-                $name = str_replace(' ', '-', $name);
+                $name = $value['product_Slug'];
                 $href = _WEB_ROOT.'/san-pham/'.$name;
                 echo "<ul>";
                 echo "<a id='choose_res' href='$href'>";
@@ -93,3 +89,4 @@ class Product extends Controller{
         
     }
 }
+?>

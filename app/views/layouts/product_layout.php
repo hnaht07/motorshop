@@ -7,6 +7,7 @@ $data['yam'] = $numYam;
 $data['suzu'] = $numSuzu;
 $data['numPage'] = $numPage;
 $data['numComp'] = $numComp;
+$data['compList'] = $compList;
 $data['active'] = $page_active;
 $this->render('blocks/header', $data);
 $this->render($content, $data);
