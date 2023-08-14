@@ -1,11 +1,10 @@
 <?php 
 class AuthMiddleware extends Middlewares{
     public function handle(){
-        $productModel = Load::model('ProductModel');
-        
-        if(Session::data('admin_login')==null){
+        $check = Session::data('username');
+        if($check[0]['user_Role'] != 'admin'){
             $response = new Response();
-            //$response->redirect('trang-chu');
+            $response->redirect('trang-chu');
         }
     }
 }

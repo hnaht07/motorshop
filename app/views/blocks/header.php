@@ -42,16 +42,36 @@
                         <div class="col-lg-6 text-right">
                             <div class="header-top-settings">
                                 <ul class="nav align-items-center justify-content-end">
-                                    <li class="user-hover">
-                                        Xin Chào
-                                    </li>
-                                    <li class="language">
-                                        <i class="fa fa-star" aria-hidden="true"></i> Thành
-                                        <ul class="dropdown-list">
-                                            <li> <a> <i class="fa fa-star" aria-hidden="true"></i> Tài Khoản</a></li>
-                                            <li> <a> <i class="fa fa-star" aria-hidden="true"></i> Đăng Xuất</a></li>
-                                        </ul>
-                                    </li>
+
+                                    <?php
+                                    if (!empty(Session::data('username'))) {
+                                        $name = Session::data('username');
+                                    ?>
+                                        <li class="language">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <?php
+                                            echo $name[0]['user_Name'];
+                                            ?>
+                                            <ul class="dropdown-list">
+                                                <?php
+                                                if ($name[0]['user_Role'] == 'admin') {
+                                                ?>
+                                                    <li> <a href="<?php echo _WEB_ROOT ?>/quan-ly"> <i class="fa fa-star" aria-hidden="true"></i>Admin</a></li>
+                                                <?php
+                                                }
+                                                ?>
+
+                                                <li> <a href="<?php echo _WEB_ROOT ?>/dang-xuat"> <i class="fa fa-star" aria-hidden="true"></i> Đăng Xuất</a></li>
+                                            </ul>
+                                        </li>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <p><a href="<?php echo _WEB_ROOT ?>/dang-nhap" style="color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i> Đăng Nhập</a></p>
+                                    <?php
+                                    }
+                                    ?>
+
                                 </ul>
                             </div>
                         </div>

@@ -3517,11 +3517,16 @@ fieldset {
 
 /*------ end Compare Page Wrapper -----*/
 /*------ Start Login & Register Page ------*/
+.member-area-from-wrap{
+  position: relative;
+}
 .login-reg-form-wrap {
   background-color: #fff;
   -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
-  padding: 23px 30px 30px; }
+  padding: 23px 30px 30px; 
+  
+}
   @media only screen and (max-width: 575.98px) {
     .login-reg-form-wrap {
       padding: 23px 15px 30px; } }
@@ -3549,7 +3554,9 @@ fieldset {
 
 @media only screen and (max-width: 767.98px) {
   .signup-form {
-    margin-top: 62px; } }
+    margin-top: 62px; 
+    
+  } }
 
 /*------ end Login & Register Page ------*/
 /*-------- Start My Account Page Wrapper --------*/

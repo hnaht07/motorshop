@@ -178,6 +178,7 @@ class Dashboard extends Controller{
             }else{
                 $dataUpdate = [];
                 $dataImg = [];
+                
                 //render insert product
                 $dataUpdate['product_Id'] = '';
                 $dataUpdate['product_Name'] = $_POST['product_name'];
@@ -405,6 +406,7 @@ class Dashboard extends Controller{
 
     public function delete_product()//xử lý xóa sản phẩm
     {
+        
         if(isset($_POST['id'])){
             $id = $_POST['id'];
             $this->admin->delete($id, 'tbl_product','product_Id');
