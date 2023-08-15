@@ -128,7 +128,16 @@
                                 $fieldCheck = $rulesArr[2];
                             }
                             if(!empty($tableName) && !empty($fieldCheck)){
-                                $checkExist = $this->dbRequest->query("SELECT $fieldCheck FROM $tableName WHERE $fieldCheck='$dataFields[$fieldName]'")->rowCount();
+                                if(count($rulesArr) == 3){
+                                    $checkExist = $this->dbRequest->query("SELECT $fieldCheck FROM $tableName WHERE $fieldCheck='$dataFields[$fieldName]'")->rowCount();
+                                }elseif(count($rulesArr) == 4){
+                                    if(!empty($rulesArr[3]) && preg_match('~.+?\=.+?~is', $rulesArr[3])){
+                                        $conditionWhere = $rulesArr[3];
+                                        $conditionWhere = str_replace('=','<>',$conditionWhere);
+                                        $checkExist = $this->dbRequest->query("SELECT $fieldCheck FROM $tableName WHERE $fieldCheck='$dataFields[$fieldName]' AND $conditionWhere")->rowCount();
+                                    }
+                                }
+                                
                                 if(!empty($checkExist)){
                                     $this->setErrors($fieldName, $ruleName);
                                     $checkValidate = false;

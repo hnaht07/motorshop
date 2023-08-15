@@ -28,28 +28,32 @@
                     <!-- Register Content Start -->
                     <div class="col-lg-6">
                         <div class="login-reg-form-wrap signup-form">
-                            <h2>Signup Form</h2>
-                            <form action="#" method="post">
+                            <h2>Đăng Ký</h2>
+                            <form action="<?php echo _WEB_ROOT ?>/user/render_register" method="post">
                                 <div class="single-input-item">
-                                    <input type="text" placeholder="Full Name" required />
+                                    <input type="text" class="<?php echo (!empty($errors) && array_key_exists('username', $errors)) ? 'errors' : false ?>" name="username" id="username" placeholder="Tên Đăng Nhập" value="<?php echo (!empty($old)) ? $old['username'] : false ?>" required />
+                                    <span class="error" id="error_username"><?php echo (!empty($errors) && array_key_exists('username', $errors)) ? $errors['username'] : false ?></span>
                                 </div>
                                 <div class="single-input-item">
-                                    <input type="email" placeholder="Enter your Email" required />
+                                    <input type="email" class="<?php echo (!empty($errors) && array_key_exists('useremail', $errors)) ? 'errors' : false ?>" name="useremail" id="useremail" placeholder="Nhập Email của bạn" value="<?php echo (!empty($old)) ? $old['useremail'] : false ?>" required />
+                                    <span class="error" id="error_useremail"><?php echo (!empty($errors) && array_key_exists('useremail', $errors)) ? $errors['useremail'] : false ?></span>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="single-input-item">
-                                            <input type="password" placeholder="Enter your Password" required />
+                                            <input type="password" class="<?php echo (!empty($errors) && array_key_exists('userpass', $errors)) ? 'errors' : false ?>" name="userpass" id="userpass" placeholder="Nhập Mật Khẩu" required />
+                                            <span class="error" id="error_userpass"><?php echo (!empty($errors) && array_key_exists('userpass', $errors)) ? $errors['userpass'] : false ?></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="single-input-item">
-                                            <input type="password" placeholder="Repeat your Password" required />
+                                            <input type="password" class="<?php echo (!empty($errors) && array_key_exists('userrepass', $errors)) ? 'errors' : false ?>" name="userrepass" id="userrepass" placeholder="Nhập Lại Mật Khẩu" required />
+                                            <span class="error" id="error_userrepass"><?php echo (!empty($errors) && array_key_exists('userrepass', $errors)) ? $errors['userrepass'] : false ?></span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="single-input-item">
-                                    <button class="btn">Register</button>
+                                    <button class="btn">Đăng Ký</button>
                                 </div>
                             </form>
                         </div>

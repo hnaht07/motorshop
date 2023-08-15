@@ -154,4 +154,21 @@ $(document).ready(function(){
                 }
             })
         });
+    $('#username').keyup(function(){
+        $(this).removeClass('errors');
+        $('#error_username').addClass('not-vi');
+    });
+    $('#useremail').keyup(function(){
+        $(this).removeClass('errors');
+        $('#error_useremail').addClass('not-vi');
+    });
+    $('#userpass').keyup(function(){
+        $(this).removeClass('errors');
+        $('#error_userpass').addClass('not-vi');
+    });
+    $('#userrepass').keyup(function(){
+        $(this).removeClass('errors');
+        $('#error_userrepass').addClass('not-vi');
+    });
 });
+

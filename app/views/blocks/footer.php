@@ -102,5 +102,21 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="<?php echo _WEB_ROOT ?>/public/assets/clients/js/custom.js"></script>
-
+<?php
+if (isset($msg)) {
+?>
+    <script>
+        Swal.fire({
+            title: '<?php echo $msg; ?>',
+            text: '<?php echo $status; ?>',
+            icon: '<?php echo $status_code; ?>',
+        }).then((result) => {
+            if ('<?php echo $status_code; ?>' == 'success') {
+                location.href = "<?php echo _WEB_ROOT ?>/<?php echo $redirect ?>";
+            }
+        });
+    </script>
+<?php
+}
+?>
 </body>

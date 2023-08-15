@@ -31,7 +31,7 @@
                             <h2>Đăng Nhập</h2>
                             <form action="<?php echo _WEB_ROOT ?>/user/render_login" method="post">
                                 <div class="single-input-item">
-                                    <input class="<?php echo (!empty($errors) && array_key_exists('login_name', $errors)) ? 'errors' : false ?>" type="text" name="login_name" id="login_name" placeholder="Email hoặc tên đăng nhập" value="<?php echo (!empty($old)) ? $old['login_name'] : false ?>" required />
+                                    <input class="<?php echo (!empty($errors) && array_key_exists('login_name', $errors)) ? 'errors' : false ?>" type="text" name="login_name" id="login_name" placeholder="Tên đăng nhập" value="<?php echo (!empty($old)) ? $old['login_name'] : false ?>" required />
                                 </div>
                                 <div class="single-input-item">
                                     <input class="<?php echo (!empty($errors) && array_key_exists('login_password', $errors)) ? 'errors' : false ?>" type="password" name="login_password" placeholder="Nhập mật khẩu" required />
@@ -48,7 +48,7 @@
                                     </div>
                                 </div>
                                 <div class="single-input-item">
-                                    <label>Chưa Có Tài Khoản?</label> &nbsp <a href="#" class="forget-pwd">Đăng Ký</a>
+                                    <label>Chưa Có Tài Khoản?</label> &nbsp <a href="<?php echo _WEB_ROOT ?>/dang-ky" class="forget-pwd">Đăng Ký</a>
                                 </div>
                                 <div class="single-input-item">
                                     <button class="btn">Đăng Nhập</button>
