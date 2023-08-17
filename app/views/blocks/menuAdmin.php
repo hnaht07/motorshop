@@ -37,7 +37,7 @@
                                     <a href="<?php echo _WEB_ROOT ?>/thong-tin" <?php echo ($active == 'info') ? 'class="active"' : false; ?>><i class="fa fa-plus"></i>Thông Tin Chi Tiết</a>
                                     <a href="<?php echo _WEB_ROOT ?>/ban-tin" <?php echo ($active == 'list') ? 'class="active"' : false; ?>><i class="fa fa-dashboard"></i>Danh Sách Tin Tức</a>
                                     <a href="<?php echo _WEB_ROOT ?>/them-ban-tin" <?php echo ($active == 'news') ? 'class="active"' : false; ?>><i class="fa fa-plus"></i>Thêm Tin Tức</a>
-                                    <a href="#"><i class="fa fa-sign-out"></i> Đăng Xuất</a>
+                                    <a href="<?php echo _WEB_ROOT ?>/dang-xuat"><i class="fa fa-sign-out"></i> Đăng Xuất</a>
                                 </div>
                             </div>
                             <!-- My Account Tab Menu End -->

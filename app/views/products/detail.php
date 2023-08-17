@@ -119,75 +119,75 @@
                                                 <tbody>
                                                     <tr style="background-color:#dfdbdb">
                                                         <td>Khối lượng bản thân</td>
-                                                        <td><?php echo $info[0]['info_Weight'] ?>kg</td>
+                                                        <td><?php echo ($info[0]['info_Weight']) ? $info[0]['info_Weight'] : "chưa có thông tin" ?> (kg)</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Dài x Rộng x Cao</td>
-                                                        <td><?php echo $info[0]['info_Long'] ?> x <?php echo $info[0]['info_Wide'] ?> x <?php echo $info[0]['info_High'] ?>mm</td>
+                                                        <td><?php echo ($info[0]['info_Long']) ? $info[0]['info_Long'] : "--" ?> x <?php echo ($info[0]['info_Wide']) ? $info[0]['info_Wide'] : "--" ?> x <?php echo ($info[0]['info_High']) ? $info[0]['info_High'] : "--" ?>mm</td>
                                                     </tr>
                                                     <tr style="background-color:#dfdbdb">
                                                         <td>Độ cao yên</td>
-                                                        <td><?php echo $info[0]['info_Saddle'] ?>mm</td>
+                                                        <td><?php echo ($info[0]['info_Saddle']) ? $info[0]['info_Saddle'] : "chưa có thông tin" ?>mm</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Khoảng sáng gầm xe</td>
-                                                        <td><?php echo $info[0]['info_Clean'] ?>mm</td>
+                                                        <td><?php echo ($info[0]['info_Clean']) ? $info[0]['info_Clean'] : "chưa có thông tin" ?>mm</td>
                                                     </tr>
                                                     <tr style="background-color:#dfdbdb">
                                                         <td>Dung tích bình xăng</td>
-                                                        <td><?php echo $info[0]['info_Tank'] ?></td>
+                                                        <td><?php echo ($info[0]['info_Tank']) ? $info[0]['info_Tank'] : "chưa có thông tin" ?></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Kích cỡ lốp trước/ sau</td>
-                                                        <td>Lốp trước: <?php echo $info[0]['info_frtWheel'] ?> <br> Lốp sau: <?php echo $info[0]['info_bckWheel'] ?></td>
+                                                        <td>Lốp trước: <?php echo ($info[0]['info_frtWheel']) ? $info[0]['info_frtWheel'] : "chưa có thông tin" ?> <br> Lốp sau: <?php echo ($info[0]['info_bckWheel']) ? $info[0]['info_bckWheel'] : "chưa có thông tin" ?></td>
                                                     </tr>
                                                     <tr style="background-color:#dfdbdb">
                                                         <td>Phuộc trước</td>
-                                                        <td><?php echo $info[0]['info_frtFork'] ?></td>
+                                                        <td><?php echo ($info[0]['info_frtFork']) ? $info[0]['info_frtFork'] : "chưa có thông tin" ?></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Phuộc sau</td>
-                                                        <td><?php echo $info[0]['info_bckFork'] ?></td>
+                                                        <td><?php echo ($info[0]['info_bckFork']) ? $info[0]['info_bckFork'] : "chưa có thông tin" ?></td>
                                                     </tr>
                                                     <tr style="background-color:#dfdbdb">
                                                         <td>Loại động cơ</td>
-                                                        <td><?php echo $info[0]['info_Engine'] ?></td>
+                                                        <td><?php echo ($info[0]['info_Engine']) ? $info[0]['info_Engine'] : "chưa có thông tin" ?></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Công suất tối đa</td>
-                                                        <td><?php echo $info[0]['info_maxWatt'] ?></td>
+                                                        <td><?php echo ($info[0]['info_maxWatt']) ? $info[0]['info_maxWatt'] : "chưa có thông tin" ?></td>
                                                     </tr>
                                                     <tr style="background-color:#dfdbdb">
                                                         <td>Dung tích nhớt máy</td>
-                                                        <td><?php echo $info[0]['info_Oil'] ?></td>
+                                                        <td><?php echo ($info[0]['info_Oil']) ? $info[0]['info_Oil'] : "chưa có thông tin" ?></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Mức tiêu thụ nhiên liệu</td>
-                                                        <td><?php echo $info[0]['info_Fuel'] ?></td>
+                                                        <td><?php echo ($info[0]['info_Fuel']) ? $info[0]['info_Fuel'] : "chưa có thông tin" ?></td>
                                                     </tr>
                                                     <tr style="background-color:#dfdbdb">
                                                         <td>Hộp số</td>
-                                                        <td><?php echo $info[0]['info_Gear'] ?></td>
+                                                        <td><?php echo ($info[0]['info_Gear']) ? $info[0]['info_Gear'] : "chưa có thông tin" ?></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Hệ thống khởi động</td>
-                                                        <td><?php echo $info[0]['info_Starting'] ?></td>
+                                                        <td><?php echo ($info[0]['info_Starting']) ? $info[0]['info_Starting'] : "chưa có thông tin" ?></td>
                                                     </tr>
                                                     <tr style="background-color:#dfdbdb">
                                                         <td>Moment cực đại</td>
-                                                        <td><?php echo $info[0]['info_maxMoment'] ?></td>
+                                                        <td><?php echo ($info[0]['info_maxMoment']) ? $info[0]['info_maxMoment'] : "chưa có thông tin" ?></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Dung tích xy-lanh</td>
-                                                        <td><?php echo $info[0]['info_volCylind'] ?></td>
+                                                        <td><?php echo ($info[0]['info_volCylind']) ? $info[0]['info_volCylind'] : "chưa có thông tin" ?></td>
                                                     </tr>
                                                     <tr style="background-color:#dfdbdb">
                                                         <td>Đường kính x Hành trình pít tông</td>
-                                                        <td><?php echo $info[0]['info_DiameterxPistonStroke'] ?></td>
+                                                        <td><?php echo ($info[0]['info_DiameterxPistonStroke']) ? $info[0]['info_DiameterxPistonStroke'] : "chưa có thông tin" ?></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Tỷ số nén</td>
-                                                        <td><?php echo $info[0]['info_CompRatio'] ?></td>
+                                                        <td><?php echo ($info[0]['info_CompRatio']) ? $info[0]['info_CompRatio'] : "chưa có thông tin" ?></td>
                                                     </tr>
 
                                                 </tbody>

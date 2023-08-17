@@ -65,11 +65,12 @@ class Product extends Controller{
         $dataSearch= [];
         if(isset($_POST['query'])){
             $contentSearch = $_POST['query'];
-            $dataSearch = $this->products->searchbyName('tbl_product', $contentSearch , 'product_Name','product_Id , product_Name');
+            $dataSearch = $this->products->searchbyName('tbl_product', $contentSearch , 'product_Name','product_Slug , product_Name');
         }
         if($dataSearch != []){
             foreach ($dataSearch as $key => $value) {
                 $name = $value['product_Slug'];
+                
                 $href = _WEB_ROOT.'/san-pham/'.$name;
                 echo "<ul>";
                 echo "<a id='choose_res' href='$href'>";

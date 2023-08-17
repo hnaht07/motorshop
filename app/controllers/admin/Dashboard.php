@@ -28,6 +28,7 @@ class Dashboard extends Controller{
         $this->data['msg'] = Session::flash('msg');
         $this->data['status'] = Session::flash('status');
         $this->data['status_code'] = Session::flash('status_code');
+        $this->data['redirect'] = Session::flash('redirect');
         $this->data['old_img'] = Session::flash('old_img');
         $this->data['old_imgs'] = Session::flash('old_imgs');
         $this->data['content'] = 'admin/insert';
@@ -56,6 +57,7 @@ class Dashboard extends Controller{
         $dataImg = $this->admin->getById($id,'tbl_product_img','product_Id');
         $this->data['company'] = $dataCompany;
         $this->data['product_img'] = $dataImg;
+        $this->data['redirect'] = Session::flash('redirect');
         //Render views
         $this->render('layouts/admin_layout', $this->data);
     }
@@ -78,6 +80,7 @@ class Dashboard extends Controller{
         $this->data['msg'] = Session::flash('msg');
         $this->data['status'] = Session::flash('status');
         $this->data['status_code'] = Session::flash('status_code');
+        $this->data['redirect'] = Session::flash('redirect');
         $this->data['old_img'] = Session::flash('old_img');
         $this->render('layouts/admin_layout', $this->data);
     }
@@ -225,6 +228,7 @@ class Dashboard extends Controller{
                 Session::flash('msg', "Thêm Thành Công!");
                 Session::flash('status', 'Sản Phẩm Đã Được Thêm Vào Database');
                 Session::flash('status_code', 'success');
+                Session::flash('redirect', 'quan-ly');
             }
         }
         $response = new Response();

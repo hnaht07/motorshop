@@ -15,6 +15,11 @@ class UserModel extends Model{
         $this->db->tableBuilder($table)->insertBuilder($data);
         return $this->db->lastInsertBuilder();
     }
+    public function getLastId()
+    {
+        $data = $this->db->lastInsertBuilder();
+        return $data;
+    }
 
     public function update($data, $id, $table)
     {

@@ -29,6 +29,10 @@ class User extends Controller {
     }
     public function logout(){
         Session::delete('username');
+        Session::flash('msg', "Bạn Đã Đăng Xuất!");
+        Session::flash('status', 'Bái Baiiii ');
+        Session::flash('status_code', 'success');
+        Session::flash('redirect', 'trang-chu');
         $response = new Response();
         $response->redirect('dang-nhap');
     }
@@ -54,8 +58,10 @@ class User extends Controller {
         }else{
             $data = $this->user->getById("'" . $_POST['login_name'] . "'", 'tbl_users', 'user_Name');
             Session::data('username',$data);
-            $response = new Response();
-            $response->redirect('trang-chu');
+            Session::flash('msg', "Đăng Nhập Thành Công!");
+            Session::flash('status', 'Xin Chào Mừng ' . $_POST['login_name']);
+            Session::flash('status_code', 'success');
+            Session::flash('redirect', 'trang-chu');
         }
         $response = new Response();
         $response->redirect('dang-nhap');
@@ -69,7 +75,7 @@ class User extends Controller {
     }
     public function check_password()
     {
-        $login_password = $_POST['login_password'];
+        $login_password = md5($_POST['login_password']);
         $data = $this->user->getById("'" . $_POST['login_name'] . "'", 'tbl_users', 'user_Name');
         $check_password = $data[0]['user_Pass'];
         $compare = substr_compare($login_password,$check_password,0);
@@ -85,7 +91,7 @@ class User extends Controller {
         $request = new Request();
         if($request->isPost()){
             $request->rules([
-                'username' => 'min:5|max:30',
+                'username' => 'min:5|max:30|unique:tbl_users:user_Name',
                 'useremail' => 'email|min:6|unique:tbl_users:user_Email',
                 'userpass' => 'min:3',
                 'userrepass' => 'match:userpass',
@@ -93,6 +99,7 @@ class User extends Controller {
             $request->message([
                 'username.min' => 'Tên đăng nhập phải lớn hơn 5 ký tự!',
                 'username.max' => 'Tên đăng nhập phải nhỏ hơn 30 ký tự!',
+                'username.unique' => 'Tên đăng nhập đã được sử dụng!',
                 'useremail.email' => 'Định dạng email không hợp lệ!',
                 'useremail.min' => 'Email phải lớn hơn 6 ký tự!',
                 'useremail.unique' => 'Email đã được đăng kí!',
@@ -111,14 +118,17 @@ class User extends Controller {
             }else{
                 $dataRegister['user_Id'] = '';
                 $dataRegister['user_Name'] = $_POST['username'];
-                $dataRegister['user_Pass'] = $_POST['useremail'];
-                $dataRegister['user_Email'] = $_POST['userpass'];
+                $dataRegister['user_Pass'] = md5($_POST['userpass']);
+                $dataRegister['user_Email'] = $_POST['useremail'];
                 $dataRegister['user_Role'] = 'client';
                 $this->user->insert($dataRegister, 'tbl_users');
+                $lastId = $this->user->getLastId();
+                $data = $this->user->getById("'" . $lastId . "'", 'tbl_users', 'user_Id');
                 Session::flash('msg', "Đăng Ký Thành Công!");
                 Session::flash('status', 'Xin Chào Mừng '.$_POST['username']);
                 Session::flash('status_code', 'success');
                 Session::flash('redirect','trang-chu');
+                Session::data('username',$data);
                 $response = new Response();
                 $response->redirect('dang-ky');
             }

@@ -59,4 +59,7 @@ function toSlug($str)
     $str = strtolower(str_replace($find, '-', $str));
     return $str;
 }
+function countCompany(){
+    
+}
 ?>

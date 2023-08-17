@@ -41,8 +41,43 @@
                         </div>
                         <div class="col-lg-6 text-right">
                             <div class="header-top-settings">
-                                <ul class="nav align-items-center justify-content-end">
-                                </ul>
+                                <?php
+                                if (!empty(Session::data('username'))) {
+                                    $check = Session::data('username');
+                                ?>
+                                    <ul class="nav align-items-center justify-content-end">
+                                        <li class="curreny-wrap">
+                                            Xin Chào
+                                        </li>
+                                        <li class="language">
+                                            <?php echo $check[0]['user_Name'] ?>
+                                            <i class="fa fa-angle-down"></i>
+                                            <ul class="dropdown-list">
+                                                <li><a href="#">Tài Khoản</a></li>
+                                                <li><a href="<?php echo _WEB_ROOT ?>/dang-xuat">Đăng Xuất</a></li>
+                                                <?php 
+                                                if($check[0]['user_Role'] == 'admin'){
+                                                    echo "<li><a href='"._WEB_ROOT. "/quan-ly'>Admin</a></li>";
+                                                }
+                                                ?>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                <?php
+                                } else {
+                                ?>
+                                    <ul class="nav align-items-center justify-content-end">
+                                        <li class="curreny-wrap">
+                                            <a href="<?php echo _WEB_ROOT ?>/dang-nhap"><button type="button" class="btn">Đăng Nhập</button></a>
+                                        </li>
+                                        <li class="language">
+                                            <a href="<?php echo _WEB_ROOT ?>/dang-ky"><button type="button" class="btn">Đăng Ký</button></a>
+                                        </li>
+                                    </ul>
+                                <?php
+                                }
+                                ?>
+
                             </div>
                         </div>
                     </div>
