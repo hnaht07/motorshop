@@ -281,6 +281,7 @@ class Dashboard extends Controller{
         Session::flash('msg', "Cập Nhập Sản Phẩm Thành Công!");
         Session::flash('status', 'Sản Phẩm Đã Được Chỉnh Sửa');
         Session::flash('status_code', 'success');
+        Session::flash('redirect','quan-ly');
         $response = new Response();
         $response->redirect('them');
     }

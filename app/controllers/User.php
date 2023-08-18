@@ -14,6 +14,7 @@ class User extends Controller {
         $this->data['msg'] = Session::flash('msg');
         $this->data['status'] = Session::flash('status');
         $this->data['status_code'] = Session::flash('status_code');
+        $this->data['redirect'] = Session::flash('redirect');
         $this->render('layouts/login_layout', $this->data);
     }
     public function register()
@@ -25,6 +26,7 @@ class User extends Controller {
         $this->data['msg'] = Session::flash('msg');
         $this->data['status'] = Session::flash('status');
         $this->data['status_code'] = Session::flash('status_code');
+        $this->data['redirect'] = Session::flash('redirect');
         $this->render('layouts/login_layout', $this->data);
     }
     public function logout(){

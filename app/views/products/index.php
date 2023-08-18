@@ -1,5 +1,5 @@
 <?php
-
+$request = new Request();
 ?>
 
 <!-- main wrapper start -->
@@ -41,7 +41,7 @@
                                     <?php
                                     foreach ($compList as $key => $value) {
                                     ?>
-                                        <li><a href="san-pham?cate=<?php echo $value['company_Id'] ?>"><?php echo $value['company_Name'] ?> <span>(<?php  ?>)</span> </a></li>
+                                        <li><a href="san-pham?cate=<?php echo $value['company_Id'] ?>"><?php echo $value['company_Name'] ?> <span>(<?php echo $request->countComp($value['company_Id']) ?>)</span> </a></li>
                                     <?php
                                     }
                                     ?>
@@ -154,36 +154,6 @@
                                 if ($_GET['page'] != $numPage) {
                                 ?>
                                     <li><a class="Next" href="san-pham?page=<?php echo $_GET['page'] + 1 ?>"><i class="ion-ios-arrow-right"></i></a></li>
-                                <?php
-                                }
-
-                                ?>
-
-
-                            </ul>
-                        </div>
-                    <?php
-                    } elseif ($numComp >= 6) {
-                    ?>
-                        <div class="paginatoin-area text-center mt-45">
-                            <ul class="pagination-box">
-                                <?php if ($_GET['page'] != '' && $_GET['page'] != 1) { ?>
-                                    <li><a class="Previous" href="san-pham?cate=<?php echo $_GET['cate'] ?>&page=<?php echo $_GET['page'] - 1 ?>"><i class="ion-ios-arrow-left"></i></a></li>
-                                <?php
-                                }
-                                ?>
-
-                                <?php
-                                for ($i = 1; $i <= $numPage; $i++) {
-                                ?>
-                                    <li <?php echo ($_GET['page'] && $_GET['page'] == $i) ?  'class="active"' : false ?>><a href="san-pham?cate=<?php echo $_GET['cate'] ?>&page=<?php echo $i ?>"><?php echo $i ?></a></li>
-                                <?php
-                                }
-                                ?>
-                                <?php
-                                if ($_GET['page'] != $numPage) {
-                                ?>
-                                    <li><a class="Next" href="san-pham?cate=<?php echo $_GET['cate'] ?>&page=<?php echo $_GET['page'] + 1 ?>"><i class="ion-ios-arrow-right"></i></a></li>
                                 <?php
                                 }
 

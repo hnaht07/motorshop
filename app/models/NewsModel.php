@@ -10,6 +10,16 @@ class NewsModel extends Model{
         $data = $this->db->tableBuilder($table)->selectBuilder()->whereBuilder($field, '=', $id)->getAllBuilder();
         return $data;
     }
+    public function getListLimit($table, $begin, $base = 0)
+    {
+        $data =  $this->db->tableBuilder($table)->selectBuilder()->limitBuilder($begin, $base)->getAllBuilder();
+        return $data;
+    }
+    public function countAll($table)
+    {
+        $data = $this->db->tableBuilder($table)->countListBuilder();
+        return $data;
+    }
 }
 
 ?>

@@ -106,15 +106,17 @@
 if (isset($msg)) {
 ?>
     <script>
+        var redirect = '<?php echo $redirect ?>';
         Swal.fire({
             title: '<?php echo $msg; ?>',
             text: '<?php echo $status; ?>',
             icon: '<?php echo $status_code; ?>',
         }).then((result) => {
-            
-                if ('<?php echo $status_code; ?>' == 'success' && '<?php echo $redirect ?>' == '') {
-                    location.href = "<?php echo _WEB_ROOT ?>/<?php echo $redirect ?>";
-                }
+            if ('<?php echo $status_code; ?>' == 'success' && redirect != '') {
+                location.href = "<?php echo _WEB_ROOT ?>/<?php echo $redirect ?>";
+            } else {
+                console.log(redirect);
+            }
 
         });
     </script>

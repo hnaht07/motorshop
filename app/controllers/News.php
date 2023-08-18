@@ -7,7 +7,20 @@ class News extends Controller {
         $this->news = $this->model('NewsModel');
     }
     public function index() {
-        $dataIndex = $this->news->getListAll('tbl_news');
+        if (isset($_GET['page'])) {
+            $page = $_GET['page'];
+        } else {
+            $page = '';
+        }
+        if ($page == 1 || $page == '') {
+            $begin = 0;
+        } else {
+            $begin = ($page * 6) - 6;
+        }
+        $dataIndex = $this->news->getListLimit('tbl_news', 6, $begin);
+        $dataPage = $this->news->countAll('tbl_product');
+        $dataPage = ceil($dataPage / 6);
+        $this->data['numPage'] = $dataPage;
         $this->data['sub_content'] = $dataIndex;
         $this->data['content'] = 'news/index';
         $this->data['page_active'] = 'news';

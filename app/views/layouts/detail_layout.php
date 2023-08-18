@@ -6,6 +6,7 @@ $data['img'] = $img;
 $data['rel'] = $rel;
 $data['info'] = $info;
 $data['active'] = $page_active;
+
 $this->render('blocks/header', $data);
 $this->render($content, $data);
 $this->render('blocks/footer', $data);

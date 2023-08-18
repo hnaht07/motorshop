@@ -186,6 +186,10 @@
         public function setErrors($fieldName, $ruleName){
             $this->__errors[$fieldName][$ruleName] = $this->__messages[$fieldName . '.' . $ruleName];
         }
+        public function countComp($compId){
+            $numComp = $this->dbRequest->query("SELECT * FROM tbl_product WHERE company_Id = $compId")->rowCount();
+            echo $numComp;
+        }
     }
     
 

@@ -62,13 +62,31 @@
                         ?>
                     </div>
                     <!-- start pagination area -->
-                    <div class="paginatoin-area text-center">
+                    <div class="paginatoin-area text-center mt-45">
                         <ul class="pagination-box">
-                            <li><a class="Previous" href="#"><i class="ion-ios-arrow-left"></i></a></li>
-                            <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a class="Next" href="#"><i class="ion-ios-arrow-right"></i></a></li>
+                            <?php if ($_GET['page'] != '' && $_GET['page'] != 1) { ?>
+                                <li><a class="Previous" href="tin-tuc?page=<?php echo $_GET['page'] - 1 ?>"><i class="ion-ios-arrow-left"></i></a></li>
+                            <?php
+                            }
+                            ?>
+
+                            <?php
+                            for ($i = 1; $i <= $numPage; $i++) {
+                            ?>
+                                <li <?php echo ($_GET['page'] && $_GET['page'] == $i) ?  'class="active"' : false ?>><a href="tin-tuc?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if ($_GET['page'] != $numPage) {
+                            ?>
+                                <li><a class="Next" href="tin-tuc?page=<?php echo $_GET['page'] + 1 ?>"><i class="ion-ios-arrow-right"></i></a></li>
+                            <?php
+                            }
+
+                            ?>
+
+
                         </ul>
                     </div>
                     <!-- end pagination area -->

@@ -217,24 +217,32 @@
                                         <?php
 
                                         foreach ($rel as $key => $value) {
-                                            $name = $value['product_Name'];
-                                            $name = str_replace(' ', '-', $name);
                                             if ($value['product_Id'] != $dataShow[0]['product_Id']) {
-
                                         ?>
                                                 <div class="product-item mb-50">
                                                     <div class="product-thumb">
-                                                        <a href="<?php echo _WEB_ROOT ?>/san-pham/<?php echo $name ?>">
+                                                        <a href="<?php echo _WEB_ROOT ?>/san-pham/<?php echo $value['product_Slug'] ?>">
                                                             <img src="<?php echo _WEB_ROOT . $value['product_Img'] ?>" alt="">
                                                         </a>
                                                     </div>
                                                     <div class="product-content">
                                                         <h5 class="product-name">
-                                                            <a href="<?php echo _WEB_ROOT ?>/san-pham/<?php echo $name ?>"><?php echo $value['product_Name'] ?></a>
+                                                            <a href="<?php echo _WEB_ROOT ?>/san-pham/<?php echo $value['product_Slug'] ?>"><?php echo $value['product_Name'] ?></a>
                                                         </h5>
                                                         <div class="price-box">
-                                                            <span class="price-regular"><?php echo $value['product_downPrice'] ?></span>
-                                                            <span class="price-old"><del><?php echo $value['product_Price'] ?></del></span>
+                                                            <?php
+                                                            if ($value['product_downPrice'] != '0' && $value['product_downPrice'] != null) {
+                                                            ?>
+                                                                <span class="price-regular"><?php echo number_format($value['product_downPrice'], 0, ',', '.') ?> VNĐ</span>
+                                                                <br />
+                                                                <span class="price-old"><del><?php echo number_format($value['product_Price'], 0, ',', '.') ?> VNĐ</del></span>
+                                                            <?php
+                                                            } else {
+                                                            ?>
+                                                                <span class="price-regular"><?php echo number_format($value['product_Price'], 0, ',', '.') ?> VNĐ</span>
+                                                            <?php
+                                                            }
+                                                            ?>
                                                         </div>
                                                     </div>
                                                 </div>

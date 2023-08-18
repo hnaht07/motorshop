@@ -8,6 +8,7 @@ $data['errors'] = $errors;
 $data['msg'] = $msg;
 $data['status'] = $status;
 $data['status_code'] = $status_code;
+$data['redirect'] = $redirect;
 $data['old'] = $old;
 $data['old_img'] = $old_img;
 $data['old_imgs'] = $old_imgs;

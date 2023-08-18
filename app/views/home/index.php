@@ -173,7 +173,16 @@
                                 <div class="blog-content">
                                     <h5 class="blog-title">
                                         <a href="<?php echo _WEB_ROOT ?>/tin-tuc/<?php echo $value['news_Slug'] ?>">
-                                            <?php echo $value['news_Title'] ?>
+                                            <?php
+                                                if (strlen($value['news_Title']) > 30) {
+                                                    $split = explode(' ', $value['news_Title']);
+
+                                                    $new = array_slice($split, 0, 15);
+
+                                                    $newstring = implode(' ', $new) . '...';
+                                                }
+                                                echo $newstring;
+                                            ?>
                                         </a>
                                     </h5>
                                     <ul class="blog-meta">

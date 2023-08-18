@@ -1,3 +1,5 @@
+<?php 
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -107,7 +109,7 @@
                                         <ul>
                                             <li <?php echo ($active == 'home') ? 'class="active"' : false; ?>><a href="<?php echo _WEB_ROOT ?>/home">Trang Chủ</i></a></li>
                                             <li <?php echo ($active == 'product') ? 'class="active"' : false; ?>><a href="<?php echo _WEB_ROOT ?>/san-pham?page=1">shop</i></a></li>
-                                            <li <?php echo ($active == 'news') ? 'class="active"' : false ?>><a href="<?php echo _WEB_ROOT ?>/tin-tuc">Tin Tức</i></a></li><!--Sửa-->
+                                            <li <?php echo ($active == 'news') ? 'class="active"' : false ?>><a href="<?php echo _WEB_ROOT ?>/tin-tuc?page=1">Tin Tức</i></a></li><!--Sửa-->
                                             <li><a href=" #">Contact us</a></li><!--Sửa-->
                                         </ul>
                                     </nav>

@@ -39,23 +39,23 @@
 
                                     <li class="recent-posts">
                                         <div class="recent-posts-image">
-                                            <a href="blog-details.html"><img src="<?php echo _WEB_ROOT ?><?php echo $value['news_mainImg'] ?>" alt="post thumb"></a>
+                                            <a href="<?php echo _WEB_ROOT ?>/tin-tuc/<?php echo $value['news_Slug']; ?>"><img src="<?php echo _WEB_ROOT ?><?php echo $value['news_mainImg'] ?>" alt="post thumb"></a>
                                         </div>
                                         <div class="recent-posts-body">
                                             <span class="recent-posts-meta"><?php $date = date_create($value['news_Date']);
                                                                             echo date_format($date, "d/m/Y") ?></span>
-                                            <h6 class="recent-posts-title"><a href="blog-details.html">
-                                                <?php 
-                                                    if(strlen($value['news_Title']) > 30){
-                                                    $split = explode(' ', $value['news_Title']);
+                                            <h6 class="recent-posts-title"><a href="<?php echo _WEB_ROOT ?>/tin-tuc/<?php echo $value['news_Slug']; ?>">
+                                                    <?php
+                                                    if (strlen($value['news_Title']) > 30) {
+                                                        $split = explode(' ', $value['news_Title']);
 
-                                                    $new = array_slice($split, 0, 5);
+                                                        $new = array_slice($split, 0, 5);
 
-                                                    $newstring = implode(' ', $new) . '...';
+                                                        $newstring = implode(' ', $new) . '...';
                                                     }
                                                     echo $newstring;
-                                                ?>
-                                            </a></h6>
+                                                    ?>
+                                                </a></h6>
                                         </div>
                                     </li>
 
