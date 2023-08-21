@@ -4,7 +4,7 @@ $(document).ready(function(){
         var id = $('#productList').val();
         if(id != ''){
             $.ajax({
-                url:"http://localhost:81/motorshop/admin/dashboard/info_action",
+                url:"http://motorshop.kesug.com/motorshop/admin/dashboard/info_action",
                 method:"POST",
                 data:{query:id},
                 dataType: 'JSON',

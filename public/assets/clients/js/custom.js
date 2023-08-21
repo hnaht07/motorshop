@@ -5,7 +5,7 @@ $(document).ready(function(){
         var searchText = $(this).val();
         if(searchText != ''){
             $.ajax({
-                url : 'http://localhost:81/motorshop/product/search_product',
+                url : 'http://motorshop.kesug.com/motorshop/product/search_product',
                 method : 'POST',
                 data:{query:searchText},
                 success:function(response){
@@ -31,7 +31,7 @@ $(document).ready(function(){
         var searchText = $(this).val();
         if(searchText != ''){
             $.ajax({
-                url : 'http://localhost:81/motorshop/product/search_product',
+                url : 'http://motorshop.kesug.com/motorshop/product/search_product',
                 method : 'POST',
                 data:{query:searchText},
                 success:function(response){
@@ -72,7 +72,7 @@ $(document).ready(function(){
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "http://localhost:81/motorshop/admin/dashboard/delete_product",
+                        url: "http://motorshop.kesug.com/motorshop/admin/dashboard/delete_product",
                         method: "POST",
                         data: {
                             id: delete_id
@@ -104,7 +104,7 @@ $(document).ready(function(){
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "http://localhost:81/motorshop/admin/dashboard/delete_img",
+                        url: "http://motorshop.kesug.com/motorshop/admin/dashboard/delete_img",
                         method: "POST",
                         data: {
                             id: delete_id
@@ -136,7 +136,7 @@ $(document).ready(function(){
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "http://localhost:81/motorshop/admin/dashboard/delete_news",
+                        url: "http://motorshop.kesug.com/motorshop/admin/dashboard/delete_news",
                         method: "POST",
                         data: {
                             id: delete_id
